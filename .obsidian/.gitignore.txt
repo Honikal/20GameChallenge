@@ -1,0 +1,28 @@
+# Obsidian-specific files
+.obsidian/  # Obsidian configuration folder
+.vault-stats  # File tracking usage stats (if exists)
+
+# System files
+.DS_Store  # macOS system files
+Thumbs.db  # Windows system files
+
+# Cache and temporary files
+*.log      # Log files
+*.tmp      # Temporary files
+~$*        # Temporary Office files
+*.swp      # Swap files created by text editors (like Vim)
+
+# Backup files
+*.bak      # Backup files
+*.old      # Old files
+*.save     # Save files
+
+# JSON and custom files (if needed)
+*.json     # Optional: Ignore all JSON files if they aren't required for versioning
+
+# Node.js and development files (if applicable)
+node_modules/  # Ignore Node.js dependencies
+dist/          # Ignore build artifacts
+
+# Exclude all CFLR-related files (if applicable)
+*.cflr
