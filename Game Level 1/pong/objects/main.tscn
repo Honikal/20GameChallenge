@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bmn2ttjngyo5w" path="res://resources/sprites/Mapa.png" id="1_t384c"]
 [ext_resource type="PackedScene" uid="uid://dfhobfh8uprdt" path="res://objects/ball.tscn" id="2_hvok2"]
-[ext_resource type="PackedScene" uid="uid://ba1yegegtwebn" path="res://objects/Paleta.tscn" id="3_nxbgs"]
+[ext_resource type="PackedScene" uid="uid://ba1yegegtwebn" path="res://objects/paleta.tscn" id="3_nxbgs"]
 
-[node name="main" type="Node"]
+[node name="Main" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

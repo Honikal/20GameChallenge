@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba1yegegtwebn"]
+[gd_scene load_steps=7 format=3 uid="uid://ba1yegegtwebn"]
 
 [ext_resource type="Texture2D" uid="uid://bnfd6ixmrtgtc" path="res://resources/sprites/Paleta.png" id="1_r2uqw"]
+[ext_resource type="Script" path="res://scripts/MoveComponent.gd" id="2_cbi05"]
+[ext_resource type="Script" path="res://scripts/MoveInputComponent.gd" id="3_d56cy"]
+[ext_resource type="Resource" uid="uid://b7smecu0q4ijm" path="res://resources/tresource/movement_stats.tres" id="4_vowm8"]
+[ext_resource type="Script" path="res://scripts/PosControlComponent.gd" id="5_sarom"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sf7c8"]
 radius = 5.0
@@ -15,3 +19,16 @@ texture = ExtResource("1_r2uqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/CollisionWithBall"]
 shape = SubResource("CapsuleShape2D_sf7c8")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_cbi05")
+actor = NodePath("..")
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_d56cy")
+move_stats = ExtResource("4_vowm8")
+move_component = NodePath("../MoveComponent")
+
+[node name="PosControlComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_sarom")
+actor = NodePath("..")

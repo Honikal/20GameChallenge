@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MovementStats" load_steps=2 format=3 uid="uid://b7smecu0q4ijm"]
+
+[ext_resource type="Script" path="res://scripts/movement_stats.gd" id="1_fvsmf"]
+
+[resource]
+script = ExtResource("1_fvsmf")
+paddle_speed = 125
+ball_speed = 100

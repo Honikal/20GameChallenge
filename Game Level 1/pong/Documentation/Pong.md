@@ -41,3 +41,7 @@ Acá entonces, iré detallando una a una, las distintas experiencias que conside
 ## [[2025-01-06]]
 
 Fecha de inicio del proyecto, acá empecé con el desarrollo y la creación del proyecto, primero empecé creando los repositorios, preparar documentación principal, y más detalles a tomar en consideración.
+
+Finalmente, iniciamos con la creación del proyecto como tal, y creamos los primeros 3 objetos, el objeto madre de paleta, y el balón base como tal.
+
+Aún sin embargo, requeriremos aplicar el movimiento y los inputs como tal.
