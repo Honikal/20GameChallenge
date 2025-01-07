@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba1yegegtwebn"]
+
+[ext_resource type="Texture2D" uid="uid://bnfd6ixmrtgtc" path="res://resources/sprites/Paleta.png" id="1_r2uqw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sf7c8"]
+radius = 5.0
+height = 48.0
+
+[node name="Paleta" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r2uqw")
+
+[node name="CollisionWithBall" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/CollisionWithBall"]
+shape = SubResource("CapsuleShape2D_sf7c8")

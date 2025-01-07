@@ -10,7 +10,7 @@ status: Development
 # Tabla de contenidos
 - [Introducción](#Introducción)
 	- [Metas](##Metas)
-	- [Metas extra](##Metas extra)
+	- [Metas extra](##Metas/extra)
 - [Desarrollo](#Desarrollo)
 	- [2025-01-06](##2025-01-06)
 # Introducción

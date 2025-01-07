@@ -1,0 +1,71 @@
+git restore . (vuelve al último comit) (. = todos los archivos).
+git restore (nombre archivo) [para volver el archivo en específico].
+
+git status (Checar diferencia entre últimos cambios que se tienen y el último commit
+[archivos de diferencia nuevo]).
+
+#Commit añadir
+
+-git status => ver si hay cambios
+
+-git add .  => [añadir todos los archivos del directorio].
+-git add nombreArchivo => [añadir un archivo en específico].
+
+-git commit -m "Nombre del commit" => Realizar el commit (-m flag de nombre del commit)
+-git push                          => Se encarga de hacer un push de los datos
+
+-git status
+
+
+Crear repertorio desde gitbash
+-cd directorio
+-git init
+
+- git init <directorio_proyecto>
+
+Setear identidad de cuenta
+- git config --global user.email "email"
+- git config --global user.name "username"
+
+#Sin global para solo dicho repositorio
+
+- Ctrl+L (limpia pantalla)
+
+Checar todos los commits realizados
+- git reflog
+
+Se crea repositorio en github
+
+Clone repository (Copiar link del repositorio)
+- git clone << url_repository >>
+
+
+#Remover datos, archivos, que se encuentran en un commit sin haberse dado push
+git filter-branch --force --index-filter \
+   "git rm --cached --ignore-unmatch (name of file)"
+   --prune-empty --tag-name-filter cat -- --all
+
+#Forzar push
+git push origin (name of branch) --force
+
+#Pull and merge (makes things that are not related into relatable my merge).
+git pull origin (name of branch) --allow-unrelated-histories
+
+Descripción, fecha de entrega, colaborador o persona asignada (as), y el proyecto.
+
+#Eliminar cambios aplicados dentro del github que no podamos quitar con un git add . ya habiendo eliminado los folders o archivos dentro de nuestro proyecto
+git rm --cached <name-of-file/folder>
+
+#Luego de ésto, se suele usar:
+git push --force -u origin main
+
+#Remover commit, sin perder datos de forma local
+
+#Cambiar de url repositorio
+git remote set-url origin https://github.com/your-username/new-repository.git
+
+#Pusheamos todo al nuevo repositorio
+git push origin --all  # Pushes all branches
+
+#Cambiar de repositorio, o mejor dicho, de los branches como tal
+git checkout <name of branch>
