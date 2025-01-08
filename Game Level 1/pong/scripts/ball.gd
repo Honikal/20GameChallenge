@@ -13,6 +13,10 @@ var inicia_posicion : Vector2;
 @onready var move_component = $MoveComponent as MoveComponent;
 @onready var bounce_component = $BounceBallComponent as BounceBallComponent;
 
+#Parece  que ya funciona la identificación de componentes
+@onready var score_point_component: ScorePointComponent = $ScorePointComponent; 
+@onready var score_component: ScoreComponent = $ScoreComponent
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Llamado la primera vez que el nodo entra a la escena inicial por primera vez
@@ -22,6 +26,9 @@ func _ready() -> void:
 	#Conectamos todas las posibles señales a tomar en consideración, las conectamos a una posible función como tal
 	bounce_component.on_bounce.connect(_rebotar)
 	ball_collision.area_entered.connect(_cambiar_direccion)
+	
+	#Detectamos el caso en el que algún jugador haya conseguido un punto
+	score_point_component.on_point_scored.connect(_point_scored)
 
 
 func _rebotar(node: Node):
@@ -37,6 +44,15 @@ func _cambiar_direccion(node: Node):
 func _iniciar_movimiento():
 	move_component.velocity.x = [move_stats.ball_speed, -move_stats.ball_speed].pick_random();
 
+func _point_scored(num_player: int):
+	#Acá aplicamos cambios de puntuación y también nos encargamos de efectuar reinicio de posición
+	score_component.ajustarPuntuacion(num_player);
+	_reiniciar_posicion();
+
+func _reiniciar_posicion():
+	#Acá reiniciamos posición del balón,
+	global_position = inicia_posicion;
+	move_component.velocity = Vector2(0, 0);
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfhobfh8uprdt"]
+[gd_scene load_steps=10 format=3 uid="uid://dfhobfh8uprdt"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_r3ko1"]
 [ext_resource type="Texture2D" uid="uid://bheb0f50a6sv0" path="res://resources/sprites/Ball.png" id="1_tq00w"]
 [ext_resource type="Resource" uid="uid://b7smecu0q4ijm" path="res://resources/tresource/movement_stats.tres" id="2_d6ghn"]
 [ext_resource type="Script" path="res://scripts/MoveComponent.gd" id="2_j3sn6"]
 [ext_resource type="Script" path="res://scripts/BounceBallComponent.gd" id="4_21hmy"]
+[ext_resource type="Script" path="res://scripts/ScorePointComponent.gd" id="6_wajvn"]
+[ext_resource type="Script" path="res://scripts/ScoreComponent.gd" id="7_b4eab"]
+[ext_resource type="Resource" uid="uid://55nhqehmbis1" path="res://resources/tresource/game_stats.tres" id="8_2ly2k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6h3h"]
 radius = 11.0454
@@ -17,6 +20,7 @@ move_stats = ExtResource("2_d6ghn")
 texture = ExtResource("1_tq00w")
 
 [node name="BallCollision" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallCollision"]
 shape = SubResource("CircleShape2D_q6h3h")
@@ -28,3 +32,11 @@ actor = NodePath("..")
 [node name="BounceBallComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_21hmy")
 actor = NodePath("..")
+
+[node name="ScorePointComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("6_wajvn")
+actor = NodePath("..")
+
+[node name="ScoreComponent" type="Node" parent="."]
+script = ExtResource("7_b4eab")
+game_stats = ExtResource("8_2ly2k")

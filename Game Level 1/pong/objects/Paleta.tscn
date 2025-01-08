@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba1yegegtwebn"]
+[gd_scene load_steps=9 format=3 uid="uid://ba1yegegtwebn"]
 
+[ext_resource type="Script" path="res://scripts/paleta.gd" id="1_bw3gk"]
 [ext_resource type="Texture2D" uid="uid://bnfd6ixmrtgtc" path="res://resources/sprites/Paleta.png" id="1_r2uqw"]
 [ext_resource type="Script" path="res://scripts/MoveComponent.gd" id="2_cbi05"]
 [ext_resource type="Script" path="res://scripts/MoveInputComponent.gd" id="3_d56cy"]
@@ -8,17 +9,17 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sf7c8"]
 radius = 5.0
-height = 48.0
+height = 46.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjo70"]
+size = Vector2(96, 320)
 
 [node name="Paleta" type="Node2D"]
+script = ExtResource("1_bw3gk")
+move_stats = ExtResource("4_vowm8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_r2uqw")
-
-[node name="CollisionWithBall" type="Area2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/CollisionWithBall"]
-shape = SubResource("CapsuleShape2D_sf7c8")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("2_cbi05")
@@ -32,3 +33,17 @@ move_component = NodePath("../MoveComponent")
 [node name="PosControlComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("5_sarom")
 actor = NodePath("..")
+
+[node name="CollisionWithBall" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWithBall"]
+shape = SubResource("CapsuleShape2D_sf7c8")
+
+[node name="AICheckMovement" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AICheckMovement"]
+position = Vector2(48, 0)
+shape = SubResource("RectangleShape2D_rjo70")

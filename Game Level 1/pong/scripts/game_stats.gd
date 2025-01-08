@@ -9,6 +9,7 @@ const PLAYER_2_WINS = "Jugador 2 gana"
 	set(value):
 		scoreP1 = value;
 		if scoreP1 == max_score:
+			print("Jugador 1 gana");
 			player_wins.emit(PLAYER_1_WINS)
 		print("Puntaje actualizado: ", scoreP1, " ", scoreP2);
 		
@@ -17,6 +18,7 @@ const PLAYER_2_WINS = "Jugador 2 gana"
 	set(value):
 		scoreP2 = value;
 		if scoreP2 == max_score:
+			print("Jugador 2 gana");
 			player_wins.emit(PLAYER_2_WINS)
 		print("Puntaje actualizado: ", scoreP1, " ", scoreP2);
 		
