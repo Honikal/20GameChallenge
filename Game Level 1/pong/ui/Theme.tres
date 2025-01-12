@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b2btat22qwgmr"]
+
+[ext_resource type="FontFile" uid="uid://dnmgvsxq51xxq" path="res://resources/fonts/ARCADECLASSIC.TTF" id="1_bpjcm"]
+[ext_resource type="Texture2D" uid="uid://dk0mesxvswlew" path="res://resources/sprites/Button.png" id="2_qf3te"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58u8i"]
+texture = ExtResource("2_qf3te")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 4.0
+
+[resource]
+default_font = ExtResource("1_bpjcm")
+default_font_size = 30
+Button/font_sizes/font_size = 28
+Button/fonts/font = ExtResource("1_bpjcm")
+Button/styles/normal = SubResource("StyleBoxTexture_58u8i")
+Label/colors/font_color = Color(0.631373, 0.678431, 0.360784, 1)
+Label/colors/font_outline_color = Color(0.419608, 0.443137, 0.278431, 1)
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_bpjcm")
+LineEdit/font_sizes/font_size = 30
+LineEdit/fonts/font = ExtResource("1_bpjcm")
+OptionButton/font_sizes/font_size = 20

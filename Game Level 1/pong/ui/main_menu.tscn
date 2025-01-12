@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckkxx3gs3kx3u"]
+
+[ext_resource type="Script" path="res://scripts/UI_Scripts/menu.gd" id="1_8vjjt"]
+[ext_resource type="Theme" uid="uid://b2btat22qwgmr" path="res://ui/Theme.tres" id="2_svxyw"]
+[ext_resource type="Script" path="res://scripts/DataComponent.gd" id="3_04t3a"]
+[ext_resource type="Resource" uid="uid://55nhqehmbis1" path="res://resources/tresource/game_stats.tres" id="4_7sb4v"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8vjjt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainTitle" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MainTitle"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+text = "10 Game Challenge
+Pong"
+horizontal_alignment = 1
+
+[node name="ToPlay" type="Label" parent="CenterContainer/MainTitle"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+theme_override_font_sizes/font_size = 20
+text = "Press Space to play"
+horizontal_alignment = 1
+
+[node name="Selection" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="LGamemode" type="Label" parent="CenterContainer/Selection"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+theme_override_font_sizes/font_size = 24
+text = "Choose game mode"
+horizontal_alignment = 1
+
+[node name="GamemodeOpt" type="OptionButton" parent="CenterContainer/Selection"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Player Vs IA"
+popup/item_1/text = "PVP"
+popup/item_1/id = 1
+
+[node name="LScore" type="Label" parent="CenterContainer/Selection"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+theme_override_font_sizes/font_size = 24
+text = "Select an amount to win"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ScoreBox" type="SpinBox" parent="CenterContainer/Selection"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+min_value = 1.0
+max_value = 9.0
+step = 2.0
+value = 1.0
+
+[node name="Start" type="Button" parent="CenterContainer/Selection"]
+layout_mode = 2
+theme = ExtResource("2_svxyw")
+text = "Start Game"
+
+[node name="Data_Component" type="Node" parent="."]
+script = ExtResource("3_04t3a")
+game_stats = ExtResource("4_7sb4v")

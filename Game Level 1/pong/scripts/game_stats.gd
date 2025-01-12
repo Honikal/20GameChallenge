@@ -8,25 +8,21 @@ const PLAYER_2_WINS = "Jugador 2 gana"
 @export var scoreP1: int = 0:
 	set(value):
 		scoreP1 = value;
+		score_changed.emit(scoreP1, scoreP2);
 		if scoreP1 == max_score:
-			print("Jugador 1 gana");
 			player_wins.emit(PLAYER_1_WINS)
-		print("Puntaje actualizado: ", scoreP1, " ", scoreP2);
-		
 		
 @export var scoreP2: int = 0:
 	set(value):
 		scoreP2 = value;
+		score_changed.emit(scoreP1, scoreP2);
 		if scoreP2 == max_score:
-			print("Jugador 2 gana");
 			player_wins.emit(PLAYER_2_WINS)
-		print("Puntaje actualizado: ", scoreP1, " ", scoreP2);
 		
 #Elegimos el modo de jugabilidad (IA / 2 jugadores)
 @export var modoJuego: int = 0:
 	set(value):
 		modoJuego = value;
-		print("Elegimos el modo de juego");
 		if modoJuego == 0:
 			print("Modo de juego VS IA");
 		else:

@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b26swtuf23n2"]
+[gd_scene load_steps=7 format=3 uid="uid://b26swtuf23n2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_t0m6a"]
 [ext_resource type="Texture2D" uid="uid://bmn2ttjngyo5w" path="res://resources/sprites/Mapa.png" id="1_t384c"]
+[ext_resource type="Resource" uid="uid://55nhqehmbis1" path="res://resources/tresource/game_stats.tres" id="2_fx78c"]
 [ext_resource type="PackedScene" uid="uid://dfhobfh8uprdt" path="res://objects/ball.tscn" id="2_hvok2"]
 [ext_resource type="PackedScene" uid="uid://ba1yegegtwebn" path="res://objects/paleta.tscn" id="3_nxbgs"]
+[ext_resource type="Theme" uid="uid://b2btat22qwgmr" path="res://ui/Theme.tres" id="5_fn48d"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_t0m6a")
+game_stats = ExtResource("2_fx78c")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -19,11 +22,50 @@ texture = ExtResource("1_t384c")
 [node name="Ball" parent="." instance=ExtResource("2_hvok2")]
 position = Vector2(320, 160)
 
-[node name="Player1" parent="." instance=ExtResource("3_nxbgs")]
+[node name="Player" parent="." instance=ExtResource("3_nxbgs")]
 position = Vector2(40, 160)
 game_mode = 1
 
-[node name="Player2" parent="." instance=ExtResource("3_nxbgs")]
+[node name="Opponent" parent="." instance=ExtResource("3_nxbgs")]
 position = Vector2(600, 160)
 scale = Vector2(-1, -1)
 player_1_2 = 2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="TellPlayerInfo" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fn48d")
+text = "Press Space to Start"
+
+[node name="Score" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fn48d")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+horizontal_alignment = 1
+
+[node name="Player win" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fn48d")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

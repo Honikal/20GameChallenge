@@ -38,10 +38,16 @@ func _cambiar_direccion(node: Node):
 	if (node != bounce_component):
 		#Checamos por el posible choque (no de rebote), y en dicho caso, aplicaremos entonces el rebote
 		#eligiendo de forma aleatoria eso sí el rebote del lado de la paleta (arriba o abajo)
+		
+		#Agregamos acá la aceleración como tal en el valor de x
+		move_stats.ball_speed += (move_stats.ball_speed * move_stats.acceleration);
+		
 		move_component.velocity.x *= -1;
 		move_component.velocity.y = [move_stats.ball_speed, -move_stats.ball_speed].pick_random();
 
 func _iniciar_movimiento():
+	#Seteamos la velocidad de vuelta a su valor original
+	move_stats.ball_speed = move_stats.max_ball_speed;
 	move_component.velocity.x = [move_stats.ball_speed, -move_stats.ball_speed].pick_random();
 
 func _point_scored(num_player: int):
@@ -53,6 +59,8 @@ func _reiniciar_posicion():
 	#Acá reiniciamos posición del balón,
 	global_position = inicia_posicion;
 	move_component.velocity = Vector2(0, 0);
+	
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_fvsmf")
-paddle_speed = 125
-ball_speed = 100
+paddle_speed = 200
+max_ball_speed = 100
+ball_speed = null
+acceleration = 0.125
