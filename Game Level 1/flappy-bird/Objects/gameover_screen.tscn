@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgojjr5ab35c5"]
+
+[ext_resource type="Texture2D" uid="uid://csrjn73vq4is8" path="res://Resources/Sprites/Medals-Sheet.png" id="1_5coib"]
+[ext_resource type="Texture2D" uid="uid://uo2mgqd640de" path="res://Resources/Sprites/MenuBox.png" id="1_70rao"]
+[ext_resource type="Theme" uid="uid://lfvd3e5ln41m" path="res://Resources/Tres/theme.tres" id="1_sapc7"]
+[ext_resource type="Script" path="res://Scripts/gameover_screen.gd" id="1_tcq0v"]
+[ext_resource type="AudioStream" uid="uid://b1tgmcr63c4go" path="res://Resources/Sounds/Click sound.wav" id="4_mprpj"]
+
+[node name="GameoverScreen" type="CanvasLayer"]
+script = ExtResource("1_tcq0v")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(321, 183)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_70rao")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="gameoverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+texture = ExtResource("1_70rao")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="medalLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 16
+text = "Medal"
+
+[node name="medalSprite" type="Sprite2D" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+position = Vector2(22, 41)
+scale = Vector2(2, 2)
+texture = ExtResource("1_5coib")
+hframes = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="scoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 16
+text = "Score"
+
+[node name="scoreValue" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 16
+
+[node name="highscoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 16
+text = "Highscore"
+
+[node name="highscoreValue" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(206, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="restartButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 18
+text = "Restart"
+
+[node name="exitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 18
+text = "Menu"
+
+[node name="scoreButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme = ExtResource("1_sapc7")
+theme_override_font_sizes/font_size = 18
+text = "Scores"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mprpj")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=8 format=3 uid="uid://ykxxtlbdnvkt"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_cu07d"]
+[ext_resource type="PackedScene" uid="uid://xursvwqvhf6d" path="res://Objects/player.tscn" id="1_wgoyl"]
+[ext_resource type="PackedScene" uid="uid://bx21av2t1njt3" path="res://Objects/background.tscn" id="2_xxkae"]
+[ext_resource type="PackedScene" uid="uid://tqijwxq1ykmk" path="res://Objects/ScoreArea.tscn" id="3_smpy5"]
+[ext_resource type="PackedScene" uid="uid://ci7pbkgbqyqov" path="res://Objects/Obstacle.tscn" id="3_ukhcn"]
+[ext_resource type="Resource" uid="uid://c7ub2sl2v4brd" path="res://Resources/Tres/move_stats.tres" id="4_qdygk"]
+[ext_resource type="Resource" uid="uid://dq5bb721c3oc8" path="res://Resources/Tres/game_stats.tres" id="5_r6ci7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_cu07d")
+obstacle_scene = ExtResource("3_ukhcn")
+score_scene = ExtResource("3_smpy5")
+move_stats = ExtResource("4_qdygk")
+game_stats = ExtResource("5_r6ci7")
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("1_wgoyl")]
+position = Vector2(99, 232)
+
+[node name="Background" parent="." instance=ExtResource("2_xxkae")]

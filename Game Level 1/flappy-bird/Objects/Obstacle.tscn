@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci7pbkgbqyqov"]
+
+[ext_resource type="Texture2D" uid="uid://dew1uvl4pnoj" path="res://Resources/Sprites/Obstacles.png" id="1_4ltu8"]
+[ext_resource type="Script" path="res://Scripts/obstacle.gd" id="1_5v301"]
+[ext_resource type="Resource" uid="uid://c7ub2sl2v4brd" path="res://Resources/Tres/move_stats.tres" id="2_2tm03"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="3_0kmx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5beh"]
+size = Vector2(24, 156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh6la"]
+size = Vector2(24, 156)
+
+[node name="Obstacle" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_5v301")
+move_stats = ExtResource("2_2tm03")
+
+[node name="SpriteUp" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("1_4ltu8")
+offset = Vector2(0, -110)
+flip_v = true
+
+[node name="collisionUp" type="CollisionShape2D" parent="."]
+position = Vector2(0, -224)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_g5beh")
+debug_color = Color(0.521569, 0.227451, 0, 0.580392)
+
+[node name="SpriteDown" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("1_4ltu8")
+offset = Vector2(0, 110)
+
+[node name="collisionDown" type="CollisionShape2D" parent="."]
+position = Vector2(0, 224)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_oh6la")
+debug_color = Color(0.521569, 0.227451, 0, 0.580392)
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_0kmx2")
+actor = NodePath("..")

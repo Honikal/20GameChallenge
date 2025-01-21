@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://tqijwxq1ykmk"]
+
+[ext_resource type="Script" path="res://Scripts/score_area.gd" id="1_ecby5"]
+[ext_resource type="Script" path="res://Scripts/score_component.gd" id="2_4gmfh"]
+[ext_resource type="Resource" uid="uid://c7ub2sl2v4brd" path="res://Resources/Tres/move_stats.tres" id="2_teikv"]
+[ext_resource type="Resource" uid="uid://dq5bb721c3oc8" path="res://Resources/Tres/game_stats.tres" id="3_0woh0"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="4_vslui"]
+[ext_resource type="AudioStream" uid="uid://4id1xt57md2j" path="res://Resources/Sounds/Coin sound.wav" id="6_2yv0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33j0i"]
+size = Vector2(23.5294, 128)
+
+[node name="ScoreArea" type="Area2D"]
+scale = Vector2(0.68, 1)
+collision_layer = 8
+script = ExtResource("1_ecby5")
+move_stats = ExtResource("2_teikv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.50616e-07, 0)
+shape = SubResource("RectangleShape2D_33j0i")
+debug_color = Color(0.40471, 2.52686e-07, 0.143236, 0.721569)
+
+[node name="ScoreComponent" type="Node" parent="."]
+script = ExtResource("2_4gmfh")
+game_stats = ExtResource("3_0woh0")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_vslui")
+actor = NodePath("..")
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2yv0o")

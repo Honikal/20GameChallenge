@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GameStats" load_steps=2 format=3 uid="uid://dq5bb721c3oc8"]
+
+[ext_resource type="Script" path="res://Scripts/game_stats.gd" id="1_q4ey3"]
+
+[resource]
+script = ExtResource("1_q4ey3")
+score = 0
+highscore = 0
+bronze_medal = false
+plate_medal = false
+gold_medal = false
+platinum_medal = false
