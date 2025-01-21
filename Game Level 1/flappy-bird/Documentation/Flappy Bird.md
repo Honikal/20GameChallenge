@@ -66,8 +66,8 @@ Cabe destacar, que Godot tiene sus ventajas a la hora de generar UI simple y dec
 Acá, decidí tomarme el tiempo de pulir aquellos **Bugs** visuales o posibles problemas que tenía la partida, mejorar o hacer tweeks ligeros al movimiento, spawn de tuberías, posición de layer z de generación de los elementos, y así.
 ## Fecha de terminación y resumen
 
-Como tal, concluimos con los detalles de lo aprendido, aprendimos a usar el Vector2D y a usar un Nodo2D como tal, es un Nodo simple, básico, pero bastante práctico y la base de nodos como el KinematicBody. Aprendimos de señales, emisiones y más tipos de escenas, como las de colisiones.
+Como tal, concluimos con los detalles de lo aprendido, aprendimos a guardar los datos en un archivo .cfg, aprendimos a usar un SoundPlayer y la utilidad del AnimationPlayer, además mejorarmos entendimiento de señales, emisiones y más tipos de escenas, como las de colisiones y entendimos la importancia de dividir en instancias distintas.
 
-Terminamos el proyecto el día *12 de Enero del 2024, siendo las 3:00 p.m*, hemos aprendido bastante durante el trayecto, al mismo tiempo que usamos de un método para acelerar la curva del balón y creamos una especie de IA algo tonta, pero poco a poco se irá mejorando. 
+Terminamos el proyecto el día *19 de Enero del 2024, siendo las 7:00 p.m*, hemos aprendido bastante durante el trayecto, al mismo tiempo que usamos de un método para acelerar la curva del balón y creamos una especie de IA algo tonta, pero poco a poco se irá mejorando. 
 
 Después de todo, éste se trata de un miniproyecto para aprender a familiarizarnos con el sistema.
