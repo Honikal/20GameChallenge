@@ -22,15 +22,17 @@
             }
           },
           {
-            "id": "059be49fe754f05e",
+            "id": "9f61e5c6ca605f52",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Assets/67214.png"
+                "file": "Game Level 2/breakout/Documentation/2025-02-17.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "67214"
+              "icon": "lucide-file",
+              "title": "2025-02-17"
             }
           }
         ],
@@ -185,30 +187,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "059be49fe754f05e",
+  "active": "9f61e5c6ca605f52",
   "lastOpenFiles": [
-    "Game Level 2/breakout/Documentation/Breakout.md",
+    "Game Level 2/breakout/Resources/Ball.png",
+    "Game Level 2/breakout/Resources/Ball.aseprite",
+    "Game Level 2/breakout/Resources/Bloques-Sheet.png",
+    "Game Level 2/breakout/Resources/Bloques.aseprite",
     "Game Level 1/pong/Documentation/Pong.md",
     "Game Level 2/breakout/Documentation/2025-02-17.md",
+    "Assets/67214.png",
+    "Game Level 2/breakout/Resources/Paddle.png.import",
+    "Game Level 2/breakout/Resources/Paddle.png",
+    "Game Level 2/breakout/Resources/Paddle.aseprite",
+    "Game Level 2/breakout/Scenes/Pla6AC.tmp",
+    "Game Level 2/breakout/Scenes/Player.tscn",
+    "Game Level 2/breakout/Scenes/Pla21A2.tmp",
+    "Game Level 2/breakout/Documentation/Breakout.md",
     "README.md",
     "Game Level 2/breakout/UI",
     "Game Level 2/breakout/Scripts",
     "Game Level 2/breakout/Resources",
-    "Game Level 2/breakout/Scenes",
-    "Game Level 2/breakout/Documentation",
     "Videogames Selected.md",
-    "Game Level 2/breakout/icon.svg.import",
-    "Game Level 2/breakout/pro2B32.tmp",
     "Game Level 1/flappy-bird/Documentation/Flappy Bird.md",
     "Game Level 2/breakout/icon.svg",
-    "Game Level 2/breakout/project.godot",
-    "Game Level 2/breakout",
     "Game Level 1/flappy-bird/Documentation/2025-01-17.md",
     "Game Level 1/flappy-bird/Documentation/2025-01-18.md",
     "Game Level 1/flappy-bird/Documentation/2025-01-19.md",
     "Game Level 1/flappy-bird/Documentation/2025-01-13.md",
     "Game Level 1/flappy-bird/Documentation/2025-01-16.md",
-    "Game Level 1/flappy-bird/Documentation",
     "Game Level 1/pong/Documentation/2025-01-11.md",
     "Game Level 1/pong/Documentation/2025-01-08.md",
     "Game Level 1/pong/Documentation/2025-01-12.md",
@@ -219,9 +225,6 @@
     "Game Level 1/pong/Documentation/2025-01-06.md",
     "Pasted image 20250106175554.png",
     "Game Level 1/pong/resources/sprites/Paleta.png",
-    "Game Level 1/pong/resources/sprites/Mapa.png",
-    "Pasted image 20250106175140.png",
-    "Game Level 1/pong/Documentation/2025-01-06_img2.png",
     "2025-W02.md",
     "Untitled.md",
     "Game Level 1/Pong.md",
