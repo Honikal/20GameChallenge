@@ -14,7 +14,10 @@ Por el año 2025, iniciaremos entonces con la siguiente lista de videojuegos a c
 Pong: [[Pong]]
 Flappy Bird: [[Flappy Bird]]
 
-* Game 2: Breakout
+* Game 2: Breakout y Jetpack Joyride
+Breakout:
+Jetpack Joyride
+
 * Game 3: Frogger
 * Game 4: Indy 500
 * Game 5: Pac Man
