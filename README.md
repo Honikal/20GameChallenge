@@ -24,7 +24,7 @@ Pong: [[Pong]]
 Flappy Bird: [[Flappy Bird]]
 
 * Game 2: Breakout y Jetpack Joyride
-Breakout:
+Breakout: [[Breakout]]
 Jetpack Joyride:
 
 * Game 3: Frogger

@@ -43,3 +43,8 @@ Acá iré detallando paso a paso los avances desde día uno, distintas experienc
 
 Después de unas largas vacaciones dadas por llevar verano y no tener acceso al dispositivo, volvimos para continuar con el proyecto. Hoy empezamos con el desarrollo de la base de la documentación. Y también avanzamos en el planteo del proyecto de Breakout, creando los folders y assets iniciales para el proyecto, además de definir detalles como la paleta y más.
 
+## [[2025-02-18]]
+
+Éste día trabajamos en algo simple, nos dedicaremos a asignar los Assets creados el día anterior, quizás mejorar la documentación que hemos implementado hasta el día de hoy en general y empezar con el código básico de movimiento del jugador.
+
+Además del movimiento del jugador, asignamos las bases para el código del bloque, e iniciamos generar de forma automática de éstos, además de checar el juego original, y observar el acto del balón. Finalmente hicimos una asignación ligera de los valores del balón, pero no iniciamos su movimiento.

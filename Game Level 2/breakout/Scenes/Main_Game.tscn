@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfxm6n0nf8fd"]
+
+[ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_jphm6"]
+[ext_resource type="PackedScene" uid="uid://cqwesvwon14dm" path="res://Scenes/Player.tscn" id="1_rvw6o"]
+[ext_resource type="PackedScene" uid="uid://byfr5fx0v876p" path="res://Scenes/Brick.tscn" id="2_kpgon"]
+[ext_resource type="PackedScene" uid="uid://cu780ylehdwv8" path="res://Scenes/Ball.tscn" id="3_y2gy2"]
+
+[node name="MainGame" type="CanvasLayer"]
+script = ExtResource("1_jphm6")
+brick_scene = ExtResource("2_kpgon")
+ball_scene = ExtResource("3_y2gy2")
+
+[node name="Player" parent="." instance=ExtResource("1_rvw6o")]
+z_index = 1
+position = Vector2(160, 464)
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

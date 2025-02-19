@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ru6npnjs0ght"
-path="res://.godot/imported/Paddle.png-c4dc72d35c92c27852c66fd674d7fd66.ctex"
+uid="uid://dlnhr4mhaf5sx"
+path="res://.godot/imported/Bloques-Sheet.png-b4aaab18f782da2a3b49020f3dc571ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Paddle.png"
-dest_files=["res://.godot/imported/Paddle.png-c4dc72d35c92c27852c66fd674d7fd66.ctex"]
+source_file="res://Resources/Sprites/Bloques-Sheet.png"
+dest_files=["res://.godot/imported/Bloques-Sheet.png-b4aaab18f782da2a3b49020f3dc571ba.ctex"]
 
 [params]
 
