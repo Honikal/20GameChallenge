@@ -8,8 +8,7 @@ extends Node2D
 @onready var move_component: Move_Component = $Move_Component
 
 func _ready() -> void:
-	#Llamamos a la señal para detectar el balón al entrar al área
-	area_2d.body_entered.connect(_bounce_ball)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,10 +19,4 @@ func _process(delta: float) -> void:
 	#También en ésto consideramos datos como el clamp a tomar en considerar para el movimiento, usando un clamp
 	#para limitar el movimiento del jugador en un rango
 	move_component.velocity = Vector2(input_axis * move_stats.paddle_speed, 0);
-	
-func _bounce_ball(actor: Node2D):
-	#Ésta función se encargará de intentar definir que el objeto que choca es el balón, y dado el caso,
-	#se encargará de reflejar el vector a una nueva dirección, multiplicando la dirección a la que se
-	#dirige al balón por un -1
-	pass
 	

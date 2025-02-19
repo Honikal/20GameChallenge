@@ -48,7 +48,7 @@ func _generate_bricks():
 func _generate_ball():
 	#Asignamos las variables de aparición del objeto
 	var x: int = boundary_right / 2;
-	var y: int = 272;
+	var y: int = 256;
 	
 	var ball : Ball = ball_scene.instantiate();
 	ball.global_position = Vector2(x, y);

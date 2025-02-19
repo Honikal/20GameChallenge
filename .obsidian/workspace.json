@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Level 2/breakout/Documentation/Breakout.md",
+                "file": "Game Level 2/breakout/Documentation/2025-02-18.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Breakout"
+              "title": "2025-02-18"
             }
           },
           {
@@ -27,16 +27,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Level 2/breakout/Documentation/2025-02-18.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-02-18"
+              "title": "README"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -188,20 +187,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8e6e72b3489d1119",
+  "active": "91be97c42e5982c0",
   "lastOpenFiles": [
+    "Game Level 2/breakout/Scenes/MaiEFDA.tmp",
+    "Game Level 2/breakout/Scenes/MaiD871.tmp",
+    "Game Level 2/breakout/Scenes/MaiD750.tmp",
+    "Game Level 2/breakout/Scenes/MaiD551.tmp",
+    "Game Level 2/breakout/Scenes/Bal93C7.tmp",
+    "Game Level 2/breakout/Scenes/Bri93A1.tmp",
+    "Game Level 2/breakout/Scenes/Mai936D.tmp",
+    "Game Level 2/breakout/Scenes/Pla92E7.tmp",
+    "Game Level 2/breakout/Resources/TRes/Mov900F.tmp",
+    "Game Level 2/breakout/Scenes/Mai8FFB.tmp",
+    "Game Level 2/breakout/Scenes/Mai69FB.tmp",
     "Game Level 2/breakout/Documentation/Breakout.md",
+    "README.md",
+    "Game Level 2/breakout/Resources/Ball.png",
+    "Game Level 2/Game Level 2.md",
+    "Game Level 1/Game Level 1.md",
+    "Videogames Selected.md",
     "Game Level 2/breakout/Documentation/2025-02-18.md",
-    "Game Level 2/breakout/Scenes/BalA9C.tmp",
-    "Game Level 2/breakout/Scenes/BriA77.tmp",
-    "Game Level 2/breakout/Scenes/Main_Game.tscn~RF37cf068.TMP",
-    "Game Level 2/breakout/Scenes/MaiA42.tmp",
-    "Game Level 2/breakout/Scenes/Pla99D.tmp",
-    "Game Level 2/breakout/Scenes/Mai676.tmp",
-    "Game Level 2/breakout/Scenes/MaiEB34.tmp",
-    "Game Level 2/breakout/Scripts/maiE903.tmp",
-    "Game Level 2/breakout/Scenes/MaiE8E0.tmp",
-    "Game Level 2/breakout/Scenes/MaiB83F.tmp",
     "Game Level 2/breakout/Resources/Sprites/Paddle.png",
     "Game Level 2/breakout/Resources/Sprites/Bloques-Sheet.png",
     "Game Level 2/breakout/Resources/Sprites/Ball.png",
@@ -211,14 +216,11 @@
     "Game Level 1/flappy-bird/Documentation/2025-01-17.md",
     "Game Level 1/pong/Documentation/Pong.md",
     "Game Level 1/flappy-bird/Documentation/2025-01-13.md",
-    "README.md",
     "Game Level 2/breakout/Documentation/2025-02-17.md",
     "Game Level 2/breakout/Resources/Paddle-export.png",
-    "Game Level 2/breakout/Resources/Ball.png",
     "Game Level 2/breakout/Resources/Bloques-Sheet.png",
     "Assets/67214.png",
     "Game Level 2/breakout/Resources/Paddle.png",
-    "Videogames Selected.md",
     "Game Level 2/breakout/icon.svg",
     "Game Level 1/flappy-bird/Documentation/2025-01-16.md",
     "Game Level 1/pong/Documentation/2025-01-11.md",

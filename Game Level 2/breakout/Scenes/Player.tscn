@@ -18,7 +18,7 @@ move_stats = ExtResource("2_71wrf")
 texture = ExtResource("1_m6rp8")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708

@@ -19,13 +19,9 @@ Además, mediante ésta herramienta se buscará facilitar el orden, y la organiz
 
 Por el año 2025, iniciaremos entonces con la siguiente lista de videojuegos a completar, junto a sus posibles conexiones.
 
-* Game 1: Pong y Flappy Bird
-Pong: [[Pong]]
-Flappy Bird: [[Flappy Bird]]
+* [[Game Level 1]]: Pong y Flappy Bird
 
-* Game 2: Breakout y Jetpack Joyride
-Breakout: [[Breakout]]
-Jetpack Joyride:
+* [[Game Level 2]]: Breakout y Jetpack Joyride
 
 * Game 3: Frogger
 * Game 4: Indy 500
