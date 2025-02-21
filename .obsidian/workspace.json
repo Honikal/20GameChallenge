@@ -8,34 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "91be97c42e5982c0",
+            "id": "0c9108039f53632a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Level 2/breakout/Documentation/2025-02-18.md",
+                "file": "Game Level 2/breakout/Documentation/Breakout.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-02-18"
+              "title": "Breakout"
             }
           },
           {
-            "id": "8e6e72b3489d1119",
+            "id": "91be97c42e5982c0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -175,7 +172,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 354.5
+    "width": 212.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -189,24 +186,25 @@
   },
   "active": "91be97c42e5982c0",
   "lastOpenFiles": [
-    "Game Level 2/breakout/Scenes/MaiEFDA.tmp",
-    "Game Level 2/breakout/Scenes/MaiD871.tmp",
-    "Game Level 2/breakout/Scenes/MaiD750.tmp",
-    "Game Level 2/breakout/Scenes/MaiD551.tmp",
-    "Game Level 2/breakout/Scenes/Bal93C7.tmp",
-    "Game Level 2/breakout/Scenes/Bri93A1.tmp",
-    "Game Level 2/breakout/Scenes/Mai936D.tmp",
-    "Game Level 2/breakout/Scenes/Pla92E7.tmp",
-    "Game Level 2/breakout/Resources/TRes/Mov900F.tmp",
-    "Game Level 2/breakout/Scenes/Mai8FFB.tmp",
-    "Game Level 2/breakout/Scenes/Mai69FB.tmp",
+    "Game Level 2/breakout/Scenes/MaiE8A4.tmp",
     "Game Level 2/breakout/Documentation/Breakout.md",
+    "Game Level 2/breakout/Documentation/2025-02-20.md",
+    "Game Level 2/breakout/Scenes/Mai4DE5.tmp",
+    "Game Level 2/breakout/Scenes/Mai4CC3.tmp",
+    "Game Level 2/breakout/Scenes/Mai4A08.tmp",
+    "Game Level 2/breakout/Scripts/mai3A6A.tmp",
+    "Game Level 2/breakout/Scenes/Mai3A56.tmp",
+    "Game Level 2/breakout/Scenes/Mai1426.tmp",
+    "Game Level 2/breakout/Scenes/Mai3822.tmp",
+    "Game Level 2/breakout/Scenes/MaiF774.tmp",
+    "Game Level 2/breakout/Scenes/Mai25E3.tmp",
+    "Game Level 2/breakout/Scenes/Mai2537.tmp",
     "README.md",
+    "Game Level 2/breakout/Documentation/2025-02-18.md",
     "Game Level 2/breakout/Resources/Ball.png",
     "Game Level 2/Game Level 2.md",
     "Game Level 1/Game Level 1.md",
     "Videogames Selected.md",
-    "Game Level 2/breakout/Documentation/2025-02-18.md",
     "Game Level 2/breakout/Resources/Sprites/Paddle.png",
     "Game Level 2/breakout/Resources/Sprites/Bloques-Sheet.png",
     "Game Level 2/breakout/Resources/Sprites/Ball.png",

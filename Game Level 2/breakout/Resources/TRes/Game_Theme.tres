@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bs5g81mbs5f5d"]
+
+[ext_resource type="FontFile" uid="uid://dxygporin1ptr" path="res://Resources/Fonts/ARCADECLASSIC.TTF" id="1_wabs0"]
+
+[resource]
+Label/font_sizes/font_size = 22
+Label/fonts/font = ExtResource("1_wabs0")

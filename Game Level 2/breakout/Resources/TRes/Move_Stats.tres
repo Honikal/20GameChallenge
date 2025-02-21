@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_piygb")
-paddle_speed = 140
+paddle_speed = 150
 initial_ball_speed = 110
 actual_ball_speed = 110
 increase_speed = 0.125

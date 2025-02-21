@@ -48,3 +48,12 @@ Después de unas largas vacaciones dadas por llevar verano y no tener acceso al 
 Éste día trabajamos en algo simple, nos dedicaremos a asignar los Assets creados el día anterior, quizás mejorar la documentación que hemos implementado hasta el día de hoy en general y empezar con el código básico de movimiento del jugador.
 
 Además del movimiento del jugador, asignamos las bases para el código del bloque, e iniciamos generar de forma automática de éstos, además de checar el juego original, y observar el acto del balón. Finalmente hicimos una asignación ligera de los valores del balón, pero no iniciamos su movimiento.
+
+## [[2025-02-20]]
+
+El día de hoy primero resolvemos el bug con el que terminamos la vez pasada.
+
+Luego, procederemos a agregar nuevo contenido al balón, y al juego como tal, facilitando la puntuación, un sistema de guardado, y los UI del juego principal.
+
+Aunque tuvo que hacerse grandes cambios al código y encontramos otro posible bug relacionado con el move_and_collide, procuraremos modificar el código.
+

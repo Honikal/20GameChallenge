@@ -2,7 +2,7 @@ class_name Bound_Ctrl_Component;
 extends Node;
 
 #Tomamos el Actor y el Margen
-@export var actor: Node2D;
+@export var actor: CharacterBody2D;
 @export var margin : int = 30;
 
 #Límites de movimiento del jugador
