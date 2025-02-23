@@ -57,3 +57,8 @@ Luego, procederemos a agregar nuevo contenido al balón, y al juego como tal, fa
 
 Aunque tuvo que hacerse grandes cambios al código y encontramos otro posible bug relacionado con el move_and_collide, procuraremos modificar el código.
 
+## [[2025-02-22]]
+
+El día de hoy intentamos solucionar el bug, agregar los efectos de sonido del juego.
+
+Al final no se pudo solucionar el problema del error, dado a cuestiones del move_and_collide lateral, pero pudimos con la música del juego, con loop, pudimos resolver un bug que surgía con el sistema de puntuación. Si nos faltó quizás hacer un sistema de puntuación, pero por ahora, me siento satisfecho, y dejaré el proyecto así.

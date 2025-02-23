@@ -24,6 +24,10 @@ var save_path = SAVE_TEST_PATH;
 
 @onready var timer: Timer = $Timer #Timer para mostrar la info
 
+#Tomamos el sonido por cada vida perdida
+@onready var audio_stream: VariablePitchAudioStream = $AudioStream
+const LOSE_LIFE = preload("res://Resources/Sounds/lose_life_sound.wav");
+
 #Flags a usar como tal
 var ball_spawned = true;
 var game_over = false;
@@ -36,8 +40,11 @@ var boundary_right = ProjectSettings.get_setting("display/window/size/viewport_w
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize(); #Randomizamos la posible semilla
+	
 	#Cargamos la información del juego
 	_load_highscore();
+	game_stats.score = 0;
 	
 	#Inicializamos las vidas del juego
 	current_lives = game_stats.lifes;
@@ -48,7 +55,10 @@ func _ready() -> void:
 	_generate_bricks();
 	
 	#Éste timer se encarga de ejecutarse para enviar el mensaje al jugador de presionar el botón espacio para lanzar el balón
-	timer.timeout.connect(_begin_game_info)
+	timer.timeout.connect(_begin_game_info);
+	
+	#Tomamos el sonido como tal a usar
+	audio_stream._change_sound(LOSE_LIFE);
 	
 
 func _generate_bricks():
@@ -110,14 +120,15 @@ func _update_score():
 
 func _update_life_stats():
 	#El balón desaparece, perdemos una vida, y damos posibilidad de al presionar espacio vuelva a aparecer
-	print("El balón ha sido liberado, perdemos una vida");
 	current_lives -= 1;	
 	_update_lives_display();
+	
+	#Reproducimos efecto de sonido de perder vida
+	audio_stream._play_normal();
 	
 	if (current_lives == 0):
 		_save_highscore();
 		_game_over();
-
 	else:
 		timer.start(); #Llamamos de nuevo el timer para que se detecte el juego
 		

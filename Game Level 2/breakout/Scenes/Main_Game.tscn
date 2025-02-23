@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfxm6n0nf8fd"]
+[gd_scene load_steps=8 format=3 uid="uid://bfxm6n0nf8fd"]
 
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_jphm6"]
 [ext_resource type="PackedScene" uid="uid://cqwesvwon14dm" path="res://Scenes/Player.tscn" id="1_rvw6o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cu780ylehdwv8" path="res://Scenes/Ball.tscn" id="3_y2gy2"]
 [ext_resource type="Resource" uid="uid://bd84t7t0rue7g" path="res://Resources/TRes/Game_Stats.tres" id="4_12iwl"]
 [ext_resource type="Theme" uid="uid://bs5g81mbs5f5d" path="res://Resources/TRes/Game_Theme.tres" id="5_w7w6c"]
+[ext_resource type="Script" path="res://Scripts/variable_pitch_audio_stream.gd" id="7_yv6mr"]
 
 [node name="MainGame" type="CanvasLayer" node_paths=PackedStringArray("lives_container")]
 script = ExtResource("1_jphm6")
@@ -129,3 +130,7 @@ vertical_alignment = 2
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="AudioStream" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("7_yv6mr")

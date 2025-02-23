@@ -31,8 +31,7 @@
               "title": "Graph view"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -172,7 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 212.5
+    "width": 282.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,21 +183,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "91be97c42e5982c0",
+  "active": "0c9108039f53632a",
   "lastOpenFiles": [
-    "Game Level 2/breakout/Scenes/MaiE8A4.tmp",
+    "Game Level 2/breakout/Documentation/2025-02-22.md",
+    "Game Level 2/breakout/Scenes/MaiD355.tmp",
+    "Game Level 2/breakout/Scenes/MaiD321.tmp",
+    "Game Level 2/breakout/Scenes/BalD287.tmp",
+    "Game Level 2/breakout/Scenes/BriD262.tmp",
+    "Game Level 2/breakout/Scenes/PlaD23C.tmp",
+    "Game Level 2/breakout/save.cfg",
+    "Game Level 2/breakout/Scenes/MaiA972.tmp",
+    "Game Level 2/breakout/Scenes/MaiA93D.tmp",
+    "Game Level 2/breakout/Scenes/BalA894.tmp",
+    "Game Level 2/breakout/Scenes/BriA86E.tmp",
     "Game Level 2/breakout/Documentation/Breakout.md",
     "Game Level 2/breakout/Documentation/2025-02-20.md",
-    "Game Level 2/breakout/Scenes/Mai4DE5.tmp",
-    "Game Level 2/breakout/Scenes/Mai4CC3.tmp",
-    "Game Level 2/breakout/Scenes/Mai4A08.tmp",
-    "Game Level 2/breakout/Scripts/mai3A6A.tmp",
-    "Game Level 2/breakout/Scenes/Mai3A56.tmp",
-    "Game Level 2/breakout/Scenes/Mai1426.tmp",
-    "Game Level 2/breakout/Scenes/Mai3822.tmp",
-    "Game Level 2/breakout/Scenes/MaiF774.tmp",
-    "Game Level 2/breakout/Scenes/Mai25E3.tmp",
-    "Game Level 2/breakout/Scenes/Mai2537.tmp",
     "README.md",
     "Game Level 2/breakout/Documentation/2025-02-18.md",
     "Game Level 2/breakout/Resources/Ball.png",
