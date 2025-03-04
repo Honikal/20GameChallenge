@@ -11,3 +11,5 @@ Has terminado el primer challenge. Y a este punto, me tomé un descanso del tema
 **Los proyectos en los que trabajaremos son:**
 ## [[Breakout]]
 
+## [[Jetpack Joyride]]
+
