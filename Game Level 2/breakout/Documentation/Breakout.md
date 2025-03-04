@@ -5,9 +5,14 @@ status: Development
 ```
 # Tabla de contenido
 
-
-
-
+- [Introducción](#Introducción)
+	- [Metas](##Metas)
+	- [Metas extra](##Metas/extra)
+- [Desarrollo](#Desarrollo)
+	- [2025-02-17](##2025-02-17)
+	- [2025-02-18](##2025-02-18)
+	- [2025-02-20](##2025-02-20)
+	- [2025-02-22](##2025-02-22)
 # Introducción
 
 Atari Breakout fue el descendiente directo de Pong, como contestación por Atari al notar que su juego *Pong* estaba lentamente siendo copiado por distintas compañías, su idea era mantener la jugabilidad más innovativa y estar por delante del mercado. 
