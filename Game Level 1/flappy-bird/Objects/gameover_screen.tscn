@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://csrjn73vq4is8" path="res://Resources/Sprites/Medals-Sheet.png" id="1_5coib"]
 [ext_resource type="Texture2D" uid="uid://uo2mgqd640de" path="res://Resources/Sprites/MenuBox.png" id="1_70rao"]
 [ext_resource type="Theme" uid="uid://lfvd3e5ln41m" path="res://Resources/Tres/theme.tres" id="1_sapc7"]
-[ext_resource type="Script" path="res://Scripts/gameover_screen.gd" id="1_tcq0v"]
+[ext_resource type="Script" uid="uid://dykwhpsdifnn3" path="res://Scripts/gameover_screen.gd" id="1_tcq0v"]
 [ext_resource type="AudioStream" uid="uid://b1tgmcr63c4go" path="res://Resources/Sounds/Click sound.wav" id="4_mprpj"]
 
 [node name="GameoverScreen" type="CanvasLayer"]
