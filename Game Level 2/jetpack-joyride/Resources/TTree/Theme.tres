@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://f0h452cnhs4h"]
+
+[ext_resource type="FontFile" uid="uid://dhgypo8ibcjtd" path="res://Resources/Fonts/1StSortie-4nVY.ttf" id="1_lukha"]
+[ext_resource type="Texture2D" uid="uid://bxxwhx76g0nfs" path="res://Resources/Sprites/Button.png" id="2_lv7n7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lv7n7"]
+texture = ExtResource("2_lv7n7")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wji8m"]
+texture = ExtResource("2_lv7n7")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vk87e"]
+texture = ExtResource("2_lv7n7")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(64, 0, 32, 32)
+
+[resource]
+Button/colors/font_outline_color = Color(0.286076, 0.655772, 0.624587, 1)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_lukha")
+Button/styles/hover = SubResource("StyleBoxTexture_lv7n7")
+Button/styles/normal = SubResource("StyleBoxTexture_wji8m")
+Button/styles/pressed = SubResource("StyleBoxTexture_vk87e")
+Label/colors/font_shadow_color = Color(0.594095, 0.383013, 0.156943, 0.643137)
+Label/constants/outline_size = 1
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_lukha")

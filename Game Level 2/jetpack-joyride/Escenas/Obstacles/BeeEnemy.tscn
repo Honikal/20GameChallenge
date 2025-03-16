@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cofvhqu5yg01e"]
+
+[ext_resource type="PackedScene" uid="uid://b5btnry13o5my" path="res://Escenas/Obstacles/Enemy.tscn" id="1_cjdpc"]
+[ext_resource type="Texture2D" uid="uid://dvef7drk06bd1" path="res://Resources/Sprites/bee_obstacle.png" id="2_8dqp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krmbj"]
+atlas = ExtResource("2_8dqp3")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wacm"]
+atlas = ExtResource("2_8dqp3")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyw8u"]
+atlas = ExtResource("2_8dqp3")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjdpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krmbj")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wacm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyw8u")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dqp3"]
+radius = 10.0081
+height = 20.0162
+
+[node name="Bee" instance=ExtResource("1_cjdpc")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cjdpc")
+animation = &"Fly"
+autoplay = "Fly"
+frame_progress = 0.69639
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_8dqp3")

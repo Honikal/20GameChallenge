@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://brpb1lpmbeql0"]
+
+[ext_resource type="Script" uid="uid://c4txgmi27lcds" path="res://Scripts/move_stats.gd" id="1_nvab8"]
+
+[resource]
+script = ExtResource("1_nvab8")
+floatSpeed = 130
+floatAcceleration = 50.0
+initialBumpAcceleration = 25
+gravity = 175
+enemyMovement = 110
+accelerationFromTime = 0.175
+enemyFormationSpeedMult = 0.8
+enemyCircleRadius = 50.0
+enemyLineSpacing = 25.0
+groupSpawnBase = 0.1
+groupSpawnMax = 0.4
+groupSpawnGrowth = 0.0005
+groupSpawnCurrent = 0.1
+formationBase = 0.1
+formationMax = 0.6
+formationGrowth = 0.0008
+formationCurrent = 0.1
+horizontalBias = 0.6
+verticalBias = 0.3
+circleBias = 0.1
+speedIncrInterval = 100
+spdEnemyIncInterval = 300
+speedIncrPercentage = 0.15
+spdSpawnReducer = 0.05
+minSpawnInterval = 2.0
+metadata/_custom_type_script = "uid://c4txgmi27lcds"
