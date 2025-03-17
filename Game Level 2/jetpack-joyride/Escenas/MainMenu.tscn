@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbv0bxlpp06oi"]
+
+[ext_resource type="Script" uid="uid://ckr78tck0cltf" path="res://Scripts/main_menu.gd" id="1_ij1hm"]
+[ext_resource type="PackedScene" uid="uid://bhw8chus6gxht" path="res://Escenas/Background.tscn" id="2_anpoc"]
+[ext_resource type="Theme" uid="uid://f0h452cnhs4h" path="res://Resources/TTree/Theme.tres" id="3_ck5re"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_ij1hm")
+
+[node name="Background" parent="." instance=ExtResource("2_anpoc")]
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="MenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -149.5
+offset_right = 224.0
+offset_bottom = 149.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ck5re")
+
+[node name="Title" type="Label" parent="MenuUI/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+text = "20 GAMES CHALLENGE
+JETPACK-JOYRIDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsSection" type="VBoxContainer" parent="MenuUI/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -182.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 3
+
+[node name="PlayBtn" type="Button" parent="MenuUI/Panel/ButtonsSection"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="OptionsBtn" type="Button" parent="MenuUI/Panel/ButtonsSection"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="ExitBtn" type="Button" parent="MenuUI/Panel/ButtonsSection"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="OptionsSection" type="VBoxContainer" parent="MenuUI/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -218.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionsLbl" type="Label" parent="MenuUI/Panel/OptionsSection"]
+layout_mode = 2
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="MenuUI/Panel/OptionsSection"]
+layout_mode = 2
+
+[node name="ResolutionLbl" type="Label" parent="MenuUI/Panel/OptionsSection/ResolutionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Resolución"
+
+[node name="ResolutionOption" type="OptionButton" parent="MenuUI/Panel/OptionsSection/ResolutionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FullScreenCheck" type="CheckBox" parent="MenuUI/Panel/OptionsSection"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="VSyncCheck" type="CheckBox" parent="MenuUI/Panel/OptionsSection"]
+layout_mode = 2
+text = "VSync"
+
+[node name="BackBtn" type="Button" parent="MenuUI/Panel/OptionsSection"]
+layout_mode = 2
+text = "BACK"

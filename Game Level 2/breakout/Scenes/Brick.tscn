@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://byfr5fx0v876p"]
 
-[ext_resource type="Script" path="res://Scripts/brick.gd" id="1_6j1oi"]
+[ext_resource type="Script" uid="uid://qod0yna3jk5s" path="res://Scripts/brick.gd" id="1_6j1oi"]
 [ext_resource type="Texture2D" uid="uid://dlnhr4mhaf5sx" path="res://Resources/Sprites/Bloques-Sheet.png" id="1_iw4jo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ddgp"]

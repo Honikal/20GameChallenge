@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://xursvwqvhf6d"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_07e05"]
+[ext_resource type="Script" uid="uid://b5udy10ccabbc" path="res://Scripts/player.gd" id="1_07e05"]
 [ext_resource type="Texture2D" uid="uid://cmkxwwtlydnl4" path="res://Resources/Sprites/FlappyBird-Sheet.png" id="1_i4dei"]
-[ext_resource type="Script" path="res://Scripts/movement.gd" id="2_0ndil"]
+[ext_resource type="Script" uid="uid://bt2bcahxjjayw" path="res://Scripts/movement.gd" id="2_0ndil"]
 [ext_resource type="Resource" uid="uid://c7ub2sl2v4brd" path="res://Resources/Tres/move_stats.tres" id="2_celoh"]
 [ext_resource type="AudioStream" uid="uid://ddfpwjjjb6s8b" path="res://Resources/Sounds/Flap sound.wav" id="5_jrvct"]
 
@@ -111,10 +111,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0efbl"]
 _data = {
-"Dead": SubResource("Animation_p8lht"),
-"Fall": SubResource("Animation_qmkku"),
-"Fly": SubResource("Animation_mbvdl"),
-"RESET": SubResource("Animation_355r2")
+&"Dead": SubResource("Animation_p8lht"),
+&"Fall": SubResource("Animation_qmkku"),
+&"Fly": SubResource("Animation_mbvdl"),
+&"RESET": SubResource("Animation_355r2")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rslpo"]

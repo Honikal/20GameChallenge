@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://cu780ylehdwv8"]
 
-[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_g8kj6"]
+[ext_resource type="Script" uid="uid://4mk1jcedf3sp" path="res://Scripts/ball.gd" id="1_g8kj6"]
 [ext_resource type="Texture2D" uid="uid://obx5p7lymdoy" path="res://Resources/Sprites/Ball.png" id="1_jpmgl"]
 [ext_resource type="Resource" uid="uid://dlfggp54oeb5h" path="res://Resources/TRes/Move_Stats.tres" id="2_svdxj"]
-[ext_resource type="Script" path="res://Scripts/move_component.gd" id="2_ugikg"]
-[ext_resource type="Script" path="res://Scripts/bounce_component.gd" id="5_ucq52"]
-[ext_resource type="Script" path="res://Scripts/variable_pitch_audio_stream.gd" id="6_b4lpn"]
+[ext_resource type="Script" uid="uid://ibxxd2ovlhpm" path="res://Scripts/move_component.gd" id="2_ugikg"]
+[ext_resource type="Script" uid="uid://fs4c16etadex" path="res://Scripts/bounce_component.gd" id="5_ucq52"]
+[ext_resource type="Script" uid="uid://cbqodnuidl57m" path="res://Scripts/variable_pitch_audio_stream.gd" id="6_b4lpn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k828c"]
 radius = 8.0

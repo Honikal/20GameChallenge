@@ -43,3 +43,24 @@ El juego controla un personaje con un jetpack, lo importante es: **Al mantener e
 ## [[2025-03-03]]
 
 El día de hoy fue simple, aproveché durante asistencia para crear la documentación del archivo. El proyecto como tal irá avanzando, pero tuve que tomarme un tiempo desde el último proyecto debido a la Universidad, ya que estuve trabajando en otro proyecto usando Unity, proyecto que intentaré reinterpretar junto al dedicado mío en el nivel 4.
+## [[2025-03-05]]
+
+Empecé a programar un poco el personaje, además de incorporar arte de la página de Kenny y de darle distinto uso. Programé las bases como una gravedad que arrastre al personaje
+## [[2025-03-06]]
+
+Hice acá un poco de código del Player, mejorando su movimiento, con la ayuda y recomendaciones de mis compañeros.
+
+## [[2025-03-13]]
+
+Luego de 1 semana de procrastinación, continué con el trabajo de programar, primero me puse a programar al personaje para que su movimiento fuera un poco mejor. Además trabajé en el Background y el parallel effect.
+
+También programé los enemigos y su movimiento base.
+
+## [[2025-03-14]]
+
+Primero que todo, resolví errores con el movimiento de los enemigos, trrabajé en el UI de la aplicación, actualización de puntuación, que el juego funcionara en su ciclo de forma normal. 
+
+## [[2025-03-15]]
+
+Terminé con algunos bugs, existe la posibilidad del bug de la resolución (al menos visto a la hora de exportar el proyecto). Pero finalmente lo exporté, le agregué música y lo exporté a Itch.IO
+

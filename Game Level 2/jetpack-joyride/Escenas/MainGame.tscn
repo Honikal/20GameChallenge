@@ -1,0 +1,151 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdc7hmgkm17d7"]
+
+[ext_resource type="Script" uid="uid://dsxpt8a11cs8b" path="res://Scripts/main_game.gd" id="1_h1l5c"]
+[ext_resource type="PackedScene" uid="uid://dw7xrll7jn86t" path="res://Escenas/Player.tscn" id="1_n7y03"]
+[ext_resource type="Resource" uid="uid://bhjv3s8rxaw4h" path="res://Resources/TTree/GameStats.tres" id="2_5tend"]
+[ext_resource type="PackedScene" uid="uid://cofvhqu5yg01e" path="res://Escenas/Obstacles/BeeEnemy.tscn" id="2_vkxdj"]
+[ext_resource type="Resource" uid="uid://brpb1lpmbeql0" path="res://Resources/TTree/MoveStats.tres" id="3_5tend"]
+[ext_resource type="PackedScene" uid="uid://ktm8mdhmo58q" path="res://Escenas/Obstacles/BatEnemy.tscn" id="3_lv5ms"]
+[ext_resource type="PackedScene" uid="uid://bhw8chus6gxht" path="res://Escenas/Background.tscn" id="3_o37df"]
+[ext_resource type="Theme" uid="uid://f0h452cnhs4h" path="res://Resources/TTree/Theme.tres" id="5_ryxee"]
+[ext_resource type="Script" uid="uid://dj2m3abtwbmr2" path="res://Scripts/spawner.gd" id="5_vl54l"]
+
+[node name="MainGame" type="Node"]
+script = ExtResource("1_h1l5c")
+game_stats = ExtResource("2_5tend")
+move_stats = ExtResource("3_5tend")
+
+[node name="Background" parent="." instance=ExtResource("3_o37df")]
+position = Vector2(-88.4297, -88.4298)
+
+[node name="Player" parent="." instance=ExtResource("1_n7y03")]
+position = Vector2(16.3705, 172.38)
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("5_vl54l")
+bee_scene = ExtResource("2_vkxdj")
+bat_scene = ExtResource("3_lv5ms")
+move_stats = ExtResource("3_5tend")
+metadata/_custom_type_script = "uid://dj2m3abtwbmr2"
+
+[node name="UI_Manager" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Manager"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="ScoreLabel" type="Label" parent="UI_Manager/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_ryxee")
+text = "0000M"
+vertical_alignment = 2
+
+[node name="Gameover_Manager" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Gameover_Manager"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -99.5
+offset_right = 182.0
+offset_bottom = 99.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameoverLbl" type="Label" parent="Gameover_Manager/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -153.0
+offset_right = 153.0
+offset_bottom = 59.0
+grow_horizontal = 2
+theme = ExtResource("5_ryxee")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="VBoxContainer" parent="Gameover_Manager/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -137.0
+offset_right = 127.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 22
+
+[node name="ScoreHandler" type="HBoxContainer" parent="Gameover_Manager/Panel/Container"]
+layout_mode = 2
+
+[node name="ScoreLbl" type="Label" parent="Gameover_Manager/Panel/Container/ScoreHandler"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+theme_override_font_sizes/font_size = 24
+text = "SCORE"
+vertical_alignment = 1
+
+[node name="ScoreVal" type="Label" parent="Gameover_Manager/Panel/Container/ScoreHandler"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
+
+[node name="HighscoreHandler" type="HBoxContainer" parent="Gameover_Manager/Panel/Container"]
+layout_mode = 2
+
+[node name="HighscoreLbl" type="Label" parent="Gameover_Manager/Panel/Container/HighscoreHandler"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+theme_override_font_sizes/font_size = 24
+text = "HIGHSCORE"
+vertical_alignment = 1
+
+[node name="HighscoreVal" type="Label" parent="Gameover_Manager/Panel/Container/HighscoreHandler"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
+
+[node name="ButtonsSection" type="HBoxContainer" parent="Gameover_Manager/Panel/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Gameover_Manager/Panel/Container/ButtonsSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+text = "RETRY"
+
+[node name="QuitButton" type="Button" parent="Gameover_Manager/Panel/Container/ButtonsSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+text = "QUIT"
+
+[node name="MenuButton" type="Button" parent="Gameover_Manager/Panel/Container/ButtonsSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_ryxee")
+text = "MENU"
+
+[node name="EnemyGenerator" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

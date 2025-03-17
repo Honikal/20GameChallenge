@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://dw7xrll7jn86t"]
+
+[ext_resource type="Texture2D" uid="uid://cb75affea0dhm" path="res://Resources/Sprites/player_spr.png" id="1_83e7o"]
+[ext_resource type="Script" uid="uid://urvgxoggviy7" path="res://Scripts/player.gd" id="1_wwpud"]
+[ext_resource type="Resource" uid="uid://brpb1lpmbeql0" path="res://Resources/TTree/MoveStats.tres" id="2_hhy33"]
+[ext_resource type="Texture2D" uid="uid://0xbd80vexpiy" path="res://Resources/Sprites/ectoplasm.png" id="4_hhy33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwpud"]
+atlas = ExtResource("1_83e7o")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1rio"]
+atlas = ExtResource("1_83e7o")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhy33"]
+atlas = ExtResource("1_83e7o")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ktotb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwpud")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1rio")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhy33")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83e7o"]
+size = Vector2(14.9407, 16.5013)
+
+[sub_resource type="Curve" id="Curve_5hhfp"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kwdw2"]
+curve = SubResource("Curve_5hhfp")
+
+[sub_resource type="Gradient" id="Gradient_hhy33"]
+offsets = PackedFloat32Array(0, 0.469136, 1)
+colors = PackedColorArray(0.552242, 0.569676, 0.551593, 1, 0.516992, 0.960601, 0.90848, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5hhfp"]
+gradient = SubResource("Gradient_hhy33")
+
+[sub_resource type="Curve" id="Curve_hhy33"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984694, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5hhfp"]
+curve = SubResource("Curve_hhy33")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhy33"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+angle_curve = SubResource("CurveTexture_kwdw2")
+spread = 180.0
+initial_velocity_min = 85.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_5hhfp")
+color_ramp = SubResource("GradientTexture1D_5hhfp")
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_wwpud")
+moveStats = ExtResource("2_hhy33")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_ktotb")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0307302, 0.250629)
+shape = SubResource("RectangleShape2D_83e7o")
+
+[node name="TimerToFall" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-0.148636, 8.1754)
+emitting = false
+amount = 10
+texture = ExtResource("4_hhy33")
+lifetime = 0.75
+one_shot = true
+emission_shape = 2
+emission_sphere_radius = 7.0
+spread = 35.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hhy33")
