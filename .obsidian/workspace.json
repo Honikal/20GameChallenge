@@ -11,10 +11,14 @@
             "id": "0c9108039f53632a",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Game Level 1/flappy-bird/Documentation/Flappy Bird.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Flappy Bird"
             }
           },
           {
