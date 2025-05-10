@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2lmkbbe4tu5p"]
+
+[ext_resource type="Texture2D" uid="uid://bbp0rjcfqyc2s" path="res://Assets/Sprites/player_(Asteroids).png" id="1_3e2tf"]
+[ext_resource type="Script" uid="uid://6woyqkoa6ora" path="res://Assets/Scripts/player.gd" id="1_b2ifw"]
+[ext_resource type="Resource" uid="uid://c31t264r8k4ql" path="res://Assets/Tres/move_stats.tres" id="2_aee6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dd06"]
+atlas = ExtResource("1_3e2tf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38rej"]
+atlas = ExtResource("1_3e2tf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1xgp"]
+atlas = ExtResource("1_3e2tf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23lac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dd06")
+}],
+"loop": true,
+"name": &"Fly_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38rej")
+}],
+"loop": true,
+"name": &"Fly_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1xgp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3t24"]
+size = Vector2(32, 17)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_b2ifw")
+move_stats = ExtResource("2_aee6e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_23lac")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_w3t24")
+
+[node name="Nuzzle" type="Marker2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
