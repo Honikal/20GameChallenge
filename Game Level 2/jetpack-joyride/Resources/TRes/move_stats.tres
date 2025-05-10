@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://bext8rkixyk58"]
+
+[ext_resource type="Script" uid="uid://b4172sfys8iy7" path="res://Scripts/move_stats.gd" id="1_xpw5v"]
+
+[resource]
+script = ExtResource("1_xpw5v")
+floatSpeed = 130
+floatAcceleration = 50.0
+maxFloatSpeed = 210
+gravity = 125
+metadata/_custom_type_script = "uid://b4172sfys8iy7"
