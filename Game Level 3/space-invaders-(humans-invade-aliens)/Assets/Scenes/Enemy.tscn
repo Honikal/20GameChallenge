@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://53uyxwpjgk5n"]
+
+[ext_resource type="Script" uid="uid://dyqax8a88ur0g" path="res://Assets/Scripts/enemy.gd" id="1_3pmh0"]
+[ext_resource type="Texture2D" uid="uid://d077fjbrqtfew" path="res://Assets/Sprites/enemy_planes.png" id="1_oyf8h"]
+[ext_resource type="Resource" uid="uid://c31t264r8k4ql" path="res://Assets/Tres/move_stats.tres" id="2_td1d5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyf8h"]
+size = Vector2(23, 25)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_3pmh0")
+move_stats = ExtResource("2_td1d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oyf8h")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_oyf8h")
+
+[node name="Nuzzle" type="Marker2D" parent="."]
+position = Vector2(0, 15)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

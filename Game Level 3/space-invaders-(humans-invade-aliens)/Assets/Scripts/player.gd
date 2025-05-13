@@ -11,12 +11,15 @@ extends CharacterBody2D
 
 #Escena de bullet
 var bullet_scene = preload("res://Assets/Scenes/PlayerBullet.tscn");
+var explosion_scene = preload("res://Assets/Scenes/ParticleGenerated.tscn");
 
 #Hacemos el disparo solo si se cumple
 var isShooting = false; 
-
 var margin_x = 20;
 var boundary_window_x = ProjectSettings.get_setting("display/window/size/viewport_width");
+
+signal shipDestroyed;
+
 
 func _ready() -> void:
 	shoot_timer.timeout.connect(_reloadShot);
@@ -71,3 +74,14 @@ func _change_animation():
 		animated_sprite.play("Fly_right");
 	else:
 		animated_sprite.play("Idle");
+
+func _destroyShip():
+	var exp_inst : GPUParticles2D = explosion_scene.instantiate();
+	get_parent().add_child(exp_inst);
+	
+	#Emitimos la explosión
+	exp_inst.global_position = global_position;
+	exp_inst.emitting = true;
+	
+	#Destruimos el objeto
+	queue_free();
