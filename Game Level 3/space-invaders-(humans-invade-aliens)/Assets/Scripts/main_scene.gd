@@ -39,7 +39,8 @@ func _spawner():
 			newEnemy._manage_ship(col - 1);
 			enemiesCol.append(newEnemy);
 		enemyGroups.append(enemiesCol);
-			
+	_updateEnemiesCanShoot();
+
 func _enemyGroupMovement():
 	#Checamos que no los enemigos
 	if (enemyGroups.is_empty()):
@@ -79,10 +80,6 @@ func _changeEnemyMovement():
 				enemy.position.y += enemy.dropDistance;
 			
 func _filterEnemy(enemy_to_delete):
-	print("De acuerdo a timing, debería llamarse cuando el objeto salió del tree")
-	
-	print("Actualizamos el grupo de enemigos:  size anterior (" + str(enemyGroups.size()) + ")");
-	
 	#Primero eliminamos enemigos inválidos de cada columna
 	for i in range(enemyGroups.size()):
 		enemyGroups[i] = enemyGroups[i].filter(
@@ -94,4 +91,16 @@ func _filterEnemy(enemy_to_delete):
 		func (col):
 			return not col.is_empty()
 	)
-	print("Se actualiza la lista de enemigos:  size actual (" + str(enemyGroups.size()) + ")");
+	_updateEnemiesCanShoot();
+	
+func _updateEnemiesCanShoot():
+	for col in enemyGroups:
+		#Primero checamos el caso que la columna esté vacía
+		if (col.is_empty()):
+			continue;
+		
+		#Ahora, 
+		
+		#De ésta lista, seteamos al enemigo más al frente
+		var front_enemy : Enemy = col[-1];
+		front_enemy.canItShoot = true;

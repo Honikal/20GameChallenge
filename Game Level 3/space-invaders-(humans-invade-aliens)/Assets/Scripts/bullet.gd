@@ -28,8 +28,9 @@ func _process(delta: float) -> void:
 		#Acá existen 3 posibles casos, el collider sea bala, jugador, o nave enemiga, en cualquier de los casos
 		#El objeto bala es destruido y con el que se colisiona también
 		
-		#Liberamos ambos objetos
-		collider.shipDestroyed.emit(); #Llamamos a la señal de destrucción
+		if (collider is not Bullet):
+			#Liberamos ambos objetos
+			collider.shipDestroyed.emit(); #Llamamos a la señal de destrucción
 		queue_free();
 	
 	if ((position.y > boundarie_y + margin_y) or (position.y < -margin_y)):

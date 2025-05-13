@@ -17,6 +17,12 @@ signal shipDestroyed;
 
 func _ready() -> void:
 	randomize();
+	#Empezamos el posible timer de disparo
+	
+	#Iniciamos el timer de disparo en base a un valor random
+	var time = randf_range(3.0, 5.75);
+	shoot_timer.start(time);
+	
 	#Llamamos a la función encargada de generar el disparo
 	shoot_timer.timeout.connect(_shoot_bullet);
 	shipDestroyed.connect(_destroyShip);
@@ -40,9 +46,9 @@ func _shoot_bullet():
 		bullet_inst.position = nuzzle.global_position;
 		bullet_inst.direction = Vector2(0, 1);
 		
-		#Iniciamos el timer de disparo en base a un valor random
-		var time = randf_range(2.0, 3.75);
-		shoot_timer.start(time);
+	#Iniciamos el timer de disparo en base a un valor random
+	var time = randf_range(3.0, 5.75);
+	shoot_timer.start(time);
 
 func _destroyShip():
 	var exp_inst : GPUParticles2D = explosion_scene.instantiate();
