@@ -1,21 +1,22 @@
 extends Node
 
 var enemyGroups = [];
+var bunkerGroup = [];
 var enemyInstance = preload("res://Assets/Scenes/Enemy.tscn");
+var bunkerInstance = preload("res://Assets/Scenes/Bunkers.tscn");
 var SCREEN_SIZE = Vector2i(
 	ProjectSettings.get_setting("display/window/size/viewport_width"),
 	ProjectSettings.get_setting("display/window/size/viewport_height")
 );
-var Margin = Vector2i(
-	32,
-	12
-);
-var Spacing = Vector2i(
-	16,
-	24
-)
+
+var Margin = Vector2i(16,  12);
+var Spacing = Vector2i(16, 24);
+
+var bunker_y = 20;
+var bnkMargin = Vector2i(160, 80);
 
 func _ready() -> void:
+	randomize();
 	#Spawneamos a los distintos aviones
 	_spawner();
 
@@ -25,6 +26,8 @@ func _process(delta: float) -> void:
 
 func _spawner():
 	#Empezamos a iterar por cantidad de objetos
+	
+	#Spawneamos enemigos
 	for col in range(1, 11):
 		var enemiesCol = [];
 		for row in range(1, 6):
@@ -36,9 +39,20 @@ func _spawner():
 			#Manejamos con el valor de columna - 1
 			add_child(newEnemy);
 			newEnemy.tree_exited.connect(_filterEnemy.bind(newEnemy));
-			newEnemy._manage_ship(col - 1);
+			newEnemy._manage_ship(row - 1);
 			enemiesCol.append(newEnemy);
 		enemyGroups.append(enemiesCol);
+	
+	#Spawneamos bunkers
+	for i_bunker in range(1, 5):
+		var newBunker : Bunker = bunkerInstance.instantiate();
+		newBunker.global_position = Vector2(
+			(bnkMargin.x * i_bunker) - bnkMargin.y,
+			SCREEN_SIZE.y - bunker_y
+		);
+		add_child(newBunker);
+		bunkerGroup.append(newBunker);
+	
 	_updateEnemiesCanShoot();
 
 func _enemyGroupMovement():

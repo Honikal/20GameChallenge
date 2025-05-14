@@ -23,6 +23,7 @@ signal shipDestroyed;
 
 func _ready() -> void:
 	shoot_timer.timeout.connect(_reloadShot);
+	shipDestroyed.connect(_destroyShip)
 	
 func _process(delta: float) -> void:
 	#Primero, acá checaremos la velocidad del jugador y el movimiento como tal

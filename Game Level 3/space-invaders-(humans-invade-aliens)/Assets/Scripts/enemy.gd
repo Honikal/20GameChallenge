@@ -20,7 +20,7 @@ func _ready() -> void:
 	#Empezamos el posible timer de disparo
 	
 	#Iniciamos el timer de disparo en base a un valor random
-	var time = randf_range(3.0, 5.75);
+	var time = randf_range(3.0, 10);
 	shoot_timer.start(time);
 	
 	#Llamamos a la función encargada de generar el disparo
@@ -47,7 +47,7 @@ func _shoot_bullet():
 		bullet_inst.direction = Vector2(0, 1);
 		
 	#Iniciamos el timer de disparo en base a un valor random
-	var time = randf_range(3.0, 5.75);
+	var time = randf_range(3.0, 10);
 	shoot_timer.start(time);
 
 func _destroyShip():
