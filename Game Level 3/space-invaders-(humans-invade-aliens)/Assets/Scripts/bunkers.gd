@@ -21,10 +21,10 @@ func _ready() -> void:
 	
 
 func _damageShip():
-	print("Reducimos un poco la vida");
+	#Reducimos un poco la vida
 	currentHealth-= 1;
 	
-	print("Acá además de eso implementamos algo como para demostrar que se hizo daño, un parpadeo o así")
+	#Acá además de eso implementamos algo como para demostrar que se hizo daño, un parpadeo o así
 	animation_player.play("hit");
 	
 	if (currentHealth <= 0):

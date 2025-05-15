@@ -10,17 +10,27 @@ extends CharacterBody2D;
 var direction_x : int = 1;
 var bullet_scene = preload("res://Assets/Scenes/EnemyBullet.tscn");
 var explosion_scene = preload("res://Assets/Scenes/ParticleGenerated.tscn");
+
+var actualSpeed : int; 	#Manejamos la velocidad actual del enemigo
+var min_t;
+var max_t;  #Variables para determinar el disparo
+
 var canItShoot = false;  #Acá definimos si puede disparar o no
-var dropDistance = 16; 
+var canMove = true;      #Definimos un valor para definir que se puedan mover los enemigos o no (timer respawn)
+
+var dropDistance = 12; 
 
 signal shipDestroyed;
 
 func _ready() -> void:
 	randomize();
 	#Empezamos el posible timer de disparo
+	actualSpeed = move_stats.enemy_speed;
 	
 	#Iniciamos el timer de disparo en base a un valor random
-	var time = randf_range(3.0, 10);
+	min_t = move_stats.enemy_fire_min.x;
+	max_t = move_stats.enemy_fire_min.y;
+	var time = randf_range(min_t, max_t);
 	shoot_timer.start(time);
 	
 	#Llamamos a la función encargada de generar el disparo
@@ -28,9 +38,10 @@ func _ready() -> void:
 	shipDestroyed.connect(_destroyShip);
 
 func _process(delta: float):
-	velocity.x = direction_x * move_stats.enemy_speed;
+	velocity.x = direction_x * actualSpeed;
 	#Aplicamos movimiento
-	move_and_slide();
+	if (canMove):
+		move_and_slide();
 
 #Ésta función pública se encarga de modificar por fuera la nave a a generar
 func _manage_ship(index):
@@ -47,7 +58,7 @@ func _shoot_bullet():
 		bullet_inst.direction = Vector2(0, 1);
 		
 	#Iniciamos el timer de disparo en base a un valor random
-	var time = randf_range(3.0, 10);
+	var time = randf_range(min_t, max_t);
 	shoot_timer.start(time);
 
 func _destroyShip():
@@ -60,3 +71,18 @@ func _destroyShip():
 	
 	#Destruimos el objeto
 	queue_free();
+	
+func _setMove(value: bool):
+	#Función pública que permite al jugador poder moverse
+	canMove = value;
+
+func _setNewSpeed(fraction: float):
+	actualSpeed = lerp(move_stats.enemy_speed, move_stats.max_enemy_speed, fraction);
+	min_t = lerp(move_stats.enemy_fire_min.x, move_stats.enemy_fire_max.x, fraction);
+	max_t = lerp(move_stats.enemy_fire_min.y, move_stats.enemy_fire_max.y, fraction);
+
+func _setSpeedPerLevel(currentLevel: int):
+	var levelMult = 1.0 + (currentLevel - 1) * 0.05;
+	actualSpeed = clamp(actualSpeed * levelMult, move_stats.enemy_speed, move_stats.max_enemy_speed);
+	min_t = clamp(min_t / levelMult, move_stats.enemy_fire_max.x, move_stats.enemy_fire_min.x);
+	max_t = clamp(max_t / levelMult, move_stats.enemy_fire_max.y, move_stats.enemy_fire_min.y);

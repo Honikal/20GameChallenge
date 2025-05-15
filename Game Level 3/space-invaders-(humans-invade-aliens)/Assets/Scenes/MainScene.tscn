@@ -1,10 +1,111 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqks2ei2f27jw"]
+[gd_scene load_steps=4 format=3 uid="uid://bqks2ei2f27jw"]
 
 [ext_resource type="Script" uid="uid://b2fdbcglq5tk4" path="res://Assets/Scripts/main_scene.gd" id="1_5b232"]
-[ext_resource type="PackedScene" uid="uid://c2lmkbbe4tu5p" path="res://Assets/Scenes/Player.tscn" id="1_wiojp"]
+[ext_resource type="Resource" uid="uid://dkdybkgv1hmsd" path="res://Assets/Tres/game_stats.tres" id="2_p16ii"]
+[ext_resource type="Theme" uid="uid://4nbwscd662t5" path="res://Assets/Tres/space_invaders_theme.tres" id="3_4hes5"]
 
-[node name="MainScene" type="Node"]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("lives_container")]
 script = ExtResource("1_5b232")
+game_stats = ExtResource("2_p16ii")
+lives_container = NodePath("UI_Management/UI_Lives/Container/livesContainer")
 
-[node name="Player" parent="." instance=ExtResource("1_wiojp")]
-position = Vector2(309, 275)
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UI_Management" type="CanvasLayer" parent="."]
+
+[node name="UI_ScoreSection" type="Panel" parent="UI_Management"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Container" type="VBoxContainer" parent="UI_Management/UI_ScoreSection"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.0
+offset_right = 158.0
+offset_bottom = 46.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="LabelSections" type="HBoxContainer" parent="UI_Management/UI_ScoreSection/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="scoreLbl" type="Label" parent="UI_Management/UI_ScoreSection/Container/LabelSections"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_4hes5")
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="highscoreLbl" type="Label" parent="UI_Management/UI_ScoreSection/Container/LabelSections"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_4hes5")
+text = "HIGHSCORE"
+horizontal_alignment = 1
+
+[node name="HighscoreSection" type="HBoxContainer" parent="UI_Management/UI_ScoreSection/Container"]
+layout_mode = 2
+
+[node name="scoreVal" type="Label" parent="UI_Management/UI_ScoreSection/Container/HighscoreSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_4hes5")
+text = "0000"
+horizontal_alignment = 1
+
+[node name="highscoreVal" type="Label" parent="UI_Management/UI_ScoreSection/Container/HighscoreSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_4hes5")
+text = "0000"
+horizontal_alignment = 1
+
+[node name="UI_Lives" type="Panel" parent="UI_Management"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Container" type="HBoxContainer" parent="UI_Management/UI_Lives"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -17.0
+offset_right = 161.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="lifesLbl" type="Label" parent="UI_Management/UI_Lives/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_4hes5")
+text = "LIFES: 3"
+
+[node name="livesContainer" type="HBoxContainer" parent="UI_Management/UI_Lives/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="levelLbl" type="Label" parent="UI_Management/UI_Lives/Container"]
+layout_mode = 2
+theme = ExtResource("3_4hes5")
+text = "LEVEL: 1"
+
+[node name="timerToRespawn" type="Timer" parent="."]
+one_shot = true
