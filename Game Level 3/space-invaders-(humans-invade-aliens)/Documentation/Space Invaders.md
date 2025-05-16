@@ -63,3 +63,7 @@ Continuamos con la programación del proyecto, en esta ocasión, programando el 
 
 Resolvimos el bug, programamos el que el enemigo pudiera disparar, y empezamos a programar los bunkers y checamos que eliminaran al jugador o a la bala.
 
+## [[2025-05-15]]
+
+Trabajamos el sistema de UI y empezamos a crear el game loop y el game over.
+

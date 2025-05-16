@@ -31,6 +31,9 @@ var currentLives : int;
 @onready var lifes_lbl: Label = $UI_Management/UI_Lives/Container/lifesLbl
 @onready var level_lbl: Label = $UI_Management/UI_Lives/Container/levelLbl
 
+@onready var gameover_lbl: RichTextLabel = $UI_Management/UI_ScoreSection/Container/GameOverLbl
+@onready var anim_over: AnimationPlayer = $UI_Management/UI_ScoreSection/Container/GameOverLbl/AnimationPlayer
+
 #Timers a usar
 @onready var timer_to_respawn: Timer = $timerToRespawn
 
@@ -50,12 +53,15 @@ func _ready() -> void:
 	_update_score_display();
 	_update_lifes_display();
 	
+	gameover_lbl.visible = false;
+	
 	timer_to_respawn.timeout.connect(_resume_game);
 	
 	#Spawneamos a los distintos aviones y al jugador
 	_generatePlayer();
 	_spawner();
-
+	
+	anim_over.animation_finished.connect(SceneTransition.bind("menu"));
 func _process(delta: float) -> void:
 	#Llamamos al método que se encargará de cambiar la posición por turno
 	_enemyGroupMovement();		
@@ -259,11 +265,11 @@ func _manageEnemyDead(newEnemy: Enemy, row: int):
 func _game_over():
 	#Guardamos el puntaje del juego
 	_save_highscore();
+	anim_over.play("txtAnimation");
 	
 func _new_level():
 	#Primero, un nuevo nivel indica nuevas cosas, entre ellas, generar nuevos enemigos, y además...
 	#incrementar la velocidad de movimiento de éstos
-	
 	pass
 	
 func _save_highscore():

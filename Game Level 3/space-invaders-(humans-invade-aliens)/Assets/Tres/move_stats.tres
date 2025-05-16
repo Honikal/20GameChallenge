@@ -6,6 +6,8 @@
 script = ExtResource("1_fv50n")
 player_speed = 160
 bullet_speed = 200
-enemy_speed = 40
-max_enemy_speed = 70
+enemy_speed = 30
+max_enemy_speed = 80
+enemy_fire_min = Vector2(3, 10)
+enemy_fire_max = Vector2(1.5, 4)
 metadata/_custom_type_script = "uid://due8ar7lju6a0"

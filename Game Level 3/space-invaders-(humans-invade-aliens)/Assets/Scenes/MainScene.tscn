@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqks2ei2f27jw"]
+[gd_scene load_steps=7 format=3 uid="uid://bqks2ei2f27jw"]
 
 [ext_resource type="Script" uid="uid://b2fdbcglq5tk4" path="res://Assets/Scripts/main_scene.gd" id="1_5b232"]
 [ext_resource type="Resource" uid="uid://dkdybkgv1hmsd" path="res://Assets/Tres/game_stats.tres" id="2_p16ii"]
 [ext_resource type="Theme" uid="uid://4nbwscd662t5" path="res://Assets/Tres/space_invaders_theme.tres" id="3_4hes5"]
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("lives_container")]
+[sub_resource type="Animation" id="Animation_4hes5"]
+resource_name = "txtAnimation"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_p16ii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p16ii"]
+_data = {
+&"RESET": SubResource("Animation_p16ii"),
+&"txtAnimation": SubResource("Animation_4hes5")
+}
+
+[node name="Main" type="Node" node_paths=PackedStringArray("lives_container")]
 script = ExtResource("1_5b232")
 game_stats = ExtResource("2_p16ii")
 lives_container = NodePath("UI_Management/UI_Lives/Container/livesContainer")
@@ -69,6 +107,18 @@ size_flags_horizontal = 3
 theme = ExtResource("3_4hes5")
 text = "0000"
 horizontal_alignment = 1
+
+[node name="GameOverLbl" type="RichTextLabel" parent="UI_Management/UI_ScoreSection/Container"]
+layout_mode = 2
+theme = ExtResource("3_4hes5")
+text = "GAMEOVER"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI_Management/UI_ScoreSection/Container/GameOverLbl"]
+libraries = {
+&"": SubResource("AnimationLibrary_p16ii")
+}
 
 [node name="UI_Lives" type="Panel" parent="UI_Management"]
 anchors_preset = 12

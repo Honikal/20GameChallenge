@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://c211o42isqm35"]
+
+[ext_resource type="Script" uid="uid://nirt8em1yxhi" path="res://Assets/Scenes/menu_scene.gd" id="1_0qhl0"]
+[ext_resource type="Theme" uid="uid://4nbwscd662t5" path="res://Assets/Tres/space_invaders_theme.tres" id="1_ybviq"]
+[ext_resource type="PackedScene" uid="uid://cbxxpb7ivvdf5" path="res://Assets/Scenes/MenuButton.tscn" id="2_55vya"]
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_0qhl0")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="MenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -125.0
+offset_right = 252.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MenuUI/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = 177.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme = ExtResource("1_ybviq")
+theme_override_font_sizes/font_size = 38
+text = "20 GAMES CHALLENGE
+SPACE INVADERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsSection" type="VBoxContainer" parent="MenuUI/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PlayBtn" parent="MenuUI/Panel/ButtonsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsBtn")
+focus_neighbor_bottom = NodePath("../HighscoreBtn")
+text = "Play"
+arrowMargin = 40
+
+[node name="HighscoreBtn" parent="MenuUI/Panel/ButtonsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayBtn")
+focus_neighbor_bottom = NodePath("../OptionsBtn")
+text = "Highscore"
+
+[node name="OptionsBtn" parent="MenuUI/Panel/ButtonsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../HighscoreBtn")
+focus_neighbor_bottom = NodePath("../PlayBtn")
+text = "Options"
+arrowMargin = 60

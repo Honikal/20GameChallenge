@@ -15,6 +15,10 @@ run/main_scene="uid://bqks2ei2f27jw"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneTransition="*res://Assets/Scripts/scene_transition.gd"
+
 [display]
 
 window/size/viewport_width=640
