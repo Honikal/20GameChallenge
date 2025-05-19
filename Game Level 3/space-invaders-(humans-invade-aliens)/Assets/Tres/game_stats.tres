@@ -6,6 +6,8 @@
 script = ExtResource("1_16ky4")
 score = 0
 highscore = 0
+bunkerBonus = 150
+pointsToLevel = 2500
 lifes = 3
 bunkersHealth = 5
 metadata/_custom_type_script = "uid://bmxr8c53cgi0v"

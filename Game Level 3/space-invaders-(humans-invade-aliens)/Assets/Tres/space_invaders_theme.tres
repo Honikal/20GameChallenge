@@ -13,5 +13,5 @@ Label/constants/shadow_offset_y = 2
 Label/constants/shadow_outline_size = 2
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_4pokv")
-RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 34
 RichTextLabel/fonts/normal_font = ExtResource("1_4pokv")

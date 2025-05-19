@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Space Invaders (Humans Invade Aliens)"
-run/main_scene="uid://bqks2ei2f27jw"
+run/main_scene="uid://c211o42isqm35"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
