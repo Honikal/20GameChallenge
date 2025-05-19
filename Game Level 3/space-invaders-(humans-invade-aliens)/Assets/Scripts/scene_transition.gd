@@ -6,6 +6,10 @@ const game_scene = preload("res://Assets/Scenes/MainScene.tscn");
 
 #Creamos una función que se encarga de intercambiar globalmente escenas de forma sencilla
 func _change_scene(scene_tag: String):
+	#Para evadir posibles errores
+	if (!is_instance_valid(get_tree())):
+		return;
+	
 	var scene_to_load;
 	
 	match scene_tag:

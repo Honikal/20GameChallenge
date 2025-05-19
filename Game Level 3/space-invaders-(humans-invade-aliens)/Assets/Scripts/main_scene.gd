@@ -5,6 +5,8 @@ extends Node
 #Manejo para el sistema de spawn
 var enemyGroups = [];
 var bunkerGroup = [];
+var player : Player = null;
+
 var playerInstance = preload("res://Assets/Scenes/Player.tscn");
 var enemyInstance = preload("res://Assets/Scenes/Enemy.tscn");
 var bunkerInstance = preload("res://Assets/Scenes/Bunkers.tscn");
@@ -34,16 +36,25 @@ var currentLives : int;
 @onready var gameover_lbl: RichTextLabel = $UI_Management/UI_ScoreSection/Container/GameOverLbl
 @onready var anim_over: AnimationPlayer = $UI_Management/UI_ScoreSection/Container/GameOverLbl/AnimationPlayer
 
+@onready var ui_level_up: Panel = $UI_Management/UI_ScoreLevelUp
+@onready var bunkers_value: Label = $UI_Management/UI_ScoreLevelUp/VBoxContainer/ScoreSection/BunkerSection/bunkersValue
+
 #Timers a usar
 @onready var timer_to_respawn: Timer = $timerToRespawn
+#@onready var timer_to_transition: Timer = $timerToTransition
 
 #Variables para manejar guardado
 const SAVE_PATH = "user://save.cfg";
 const TEST_SAVE_PATH = "res://save.cfg";
 var save_path = TEST_SAVE_PATH;
 
+var gameover : bool = false;
+
 func _ready() -> void:
 	randomize();
+	
+	game_stats.score = 0;
+	game_stats.highestLevelAwarded = floor(game_stats.score / game_stats.pointsToLevel);
 	
 	#Llamamos al highscore para ver que tenemos
 	_load_highscore();
@@ -54,6 +65,7 @@ func _ready() -> void:
 	_update_lifes_display();
 	
 	gameover_lbl.visible = false;
+	ui_level_up.visible = false;
 	
 	timer_to_respawn.timeout.connect(_resume_game);
 	
@@ -61,7 +73,6 @@ func _ready() -> void:
 	_generatePlayer();
 	_spawner();
 	
-	anim_over.animation_finished.connect(SceneTransition.bind("menu"));
 func _process(delta: float) -> void:
 	#Llamamos al método que se encargará de cambiar la posición por turno
 	_enemyGroupMovement();		
@@ -95,6 +106,7 @@ func _spawner():
 			SCREEN_SIZE.y - bunker_y
 		);
 		add_child(newBunker);
+		newBunker.tree_exited.connect(_filterBunker.bind(newBunker));
 		bunkerGroup.append(newBunker);
 	
 	#Llamamos al método para permitir que puedan disparar desde el inicio
@@ -150,7 +162,20 @@ func _filterEnemy(enemy_to_delete):
 		func (col):
 			return not col.is_empty()
 	)
+	
+	#Checamos si no hay más enemigos en la lista
+	if (enemyGroups.size() <= 0):
+		_new_level();
+	
+	#Actualizamos los enemigos que pueden disparar
 	_updateEnemiesCanShoot(true);
+	
+func _filterBunker(bunker_to_delete):
+	#Filtramos los bunkers de la lista de bunkers
+	bunkerGroup = bunkerGroup.filter(
+		func(b):
+			return b != bunker_to_delete
+	)
 	
 func _updateEnemiesCanShoot(value: bool):
 	for col in enemyGroups:
@@ -189,11 +214,14 @@ func _updateEnemiesSpeed():
 
 func _generatePlayer():
 	#Creamos el objeto y lo agregamos a la escena
-	var player: Player = playerInstance.instantiate();
-	player.global_position = Vector2(playerPos, playerPos);
-	add_child(player);
+	var newPlayer: Player = playerInstance.instantiate();
+	newPlayer.global_position = Vector2(playerPos, playerPos);
+	add_child(newPlayer);
 	
-	player.tree_exited.connect(_update_game_status);
+	#Guardamos la referencia del jugador acá
+	player = newPlayer;
+	
+	newPlayer.tree_exited.connect(_update_game_status);
 
 func _updateScore(row: int):
 	#Actualizamos el puntaje de nuestra partida
@@ -208,6 +236,10 @@ func _updateScore(row: int):
 	_update_score_display();
 
 func _update_game_status():
+	#Checamos que el valor del booleano de actualización de puntaje no sea falso
+	#if (transitionLevel):
+	#	return;
+	
 	#Restamos una vida al grupo de vidas totales que tenemos
 	currentLives -= 1;
 	_update_lifes_display();
@@ -219,7 +251,6 @@ func _update_game_status():
 	#Checamos si llegamos a la cantidad de vida menor o igual a 0
 	if (currentLives == 0):
 		#Guardamos el highscore, y presentamos el game over
-		_save_highscore();
 		_game_over();
 	else:
 		#Activamos un timer que detiene todo lo que sucede
@@ -263,14 +294,82 @@ func _manageEnemyDead(newEnemy: Enemy, row: int):
 	_updateEnemiesSpeed();
 
 func _game_over():
-	#Guardamos el puntaje del juego
+	#Guardamos el puntaje del juego y actualizamos el highscore de ser necesario
+	if (game_stats.score > game_stats.highscore):
+		game_stats.highscore = game_stats.score;
+		_update_score_display();
+	
 	_save_highscore();
+	
+	#Antes que nada, activamos la línea de texto visible
+	gameover_lbl.visible = true;
 	anim_over.play("txtAnimation");
 	
+	#Esperamos que la animación sea completada
+	await anim_over.animation_finished;
+	await get_tree().create_timer(1).timeout;
+	
+	#Cambiamos de escena
+	gameover = true;
+	SceneTransition._change_scene("menu");
+	
+
+
+"""
+func _anim_to_gameover_finished(anim_name: String):
+	if (anim_name == "txtAnimation"):
+		timer_to_transition.start();
+
+func _transition():
+	SceneTransition._change_scene("menu");
+"""
+
 func _new_level():
-	#Primero, un nuevo nivel indica nuevas cosas, entre ellas, generar nuevos enemigos, y además...
-	#incrementar la velocidad de movimiento de éstos
-	pass
+	#Para evitar el error al gameover o al salir
+	if (gameover || !is_instance_valid(get_tree())):
+		return;
+	
+	#Calculamos la bonus por bunkers al subir de nivel
+	var bunkersLeft = bunkerGroup.size();
+	var currentBonus = bunkersLeft * game_stats.bunkerBonus;
+	
+	#Mostramos la UI del level up
+	ui_level_up.visible = true;
+	bunkers_value.text = str(bunkersLeft);
+	
+	#Actualizamos el puntaje
+	game_stats.score += currentBonus;
+	_update_score_display();
+	
+	var bonusLives = game_stats.highestLevelAwarded - floor(game_stats.score / game_stats.pointsToLevel);
+	print("Valor de suma en vidas extra: MLevel (" + str(game_stats.highestLevelAwarded) + ") - floor( score ("
+	+ str(game_stats.score) + ") / pointsLevel (" + str(game_stats.pointsToLevel) +"))");
+	print("Valor de vidas extra: " + str(bonusLives));
+	if (bonusLives < 0):
+		print("Si subimos de vida");
+		currentLives+= 1;
+		game_stats.highestLevelAwarded += 1;
+		_update_lifes_display();
+	
+	await get_tree().create_timer(1).timeout;
+	
+	#Preparamos para el siguiente nivel
+	currentLevel += 1;
+	level_lbl.text = "Level: " + str(currentLevel);
+	
+	#Si el puntaje actual es múltiplo o superior al valor del puntaje esperado para subir de nivel, entonces... 
+	#se sube de nivel
+	
+	#Limpiamos entidades
+	_clear_entities();
+	
+	#Escondemos las UI y resumimos
+	ui_level_up.visible = false;
+	#transitionLevel = false;
+	
+	#Spawneamos nuevo nivel
+	_spawner();
+	_generatePlayer();
 	
 func _save_highscore():
 	#Función encargada de setear o guardar el sistema o puntuación en el archivo
@@ -296,3 +395,20 @@ func _load_highscore():
 		
 	#Intentamos tomar el sistema de guardado, tomando el valor de puntaje o highscore
 	game_stats.highscore = config.get_value("game", "highscore");
+
+func _clear_entities():
+	#Limpiamos la lista de enemigos
+	enemyGroups.clear();
+	
+	#Limpiamos los bunkers
+	for bunker in bunkerGroup:
+		if (is_instance_valid(bunker)):
+			bunker.queue_free();
+	bunkerGroup.clear();
+	
+	#Quitamos al posible jugador en caso de que éste exista
+	if (is_instance_valid(player)):
+		print("Limpiamos al jugador");
+		player.tree_exited.disconnect(_update_game_status);
+		player.queue_free();
+		player = null;

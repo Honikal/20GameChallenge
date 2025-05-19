@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqks2ei2f27jw"]
+[gd_scene load_steps=10 format=3 uid="uid://bqks2ei2f27jw"]
 
 [ext_resource type="Script" uid="uid://b2fdbcglq5tk4" path="res://Assets/Scripts/main_scene.gd" id="1_5b232"]
 [ext_resource type="Resource" uid="uid://dkdybkgv1hmsd" path="res://Assets/Tres/game_stats.tres" id="2_p16ii"]
@@ -40,6 +40,67 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_p16ii"),
 &"txtAnimation": SubResource("Animation_4hes5")
+}
+
+[sub_resource type="Animation" id="Animation_5epfl"]
+resource_name = "score_increase"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/ScoreSection/BunkerSection/bunkersValue:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["5", "0"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:game_stats:score")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 150]
+}
+
+[sub_resource type="Animation" id="Animation_phnvl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/ScoreSection/BunkerSection/bunkersValue:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["5"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:game_stats:score")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phnvl"]
+_data = {
+&"RESET": SubResource("Animation_phnvl"),
+&"score_increase": SubResource("Animation_5epfl")
 }
 
 [node name="Main" type="Node" node_paths=PackedStringArray("lives_container")]
@@ -207,6 +268,11 @@ size_flags_horizontal = 3
 theme = ExtResource("3_4hes5")
 text = "Ready for the next level"
 horizontal_alignment = 1
+
+[node name="scoreIncreaseAnim" type="AnimationPlayer" parent="UI_Management/UI_ScoreLevelUp"]
+libraries = {
+&"": SubResource("AnimationLibrary_phnvl")
+}
 
 [node name="timerToRespawn" type="Timer" parent="."]
 one_shot = true
