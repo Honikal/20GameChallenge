@@ -1,10 +1,39 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://4nbwscd662t5"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://4nbwscd662t5"]
 
 [ext_resource type="FontFile" uid="uid://cemlcaorivf1g" path="res://Assets/Fonts/1StSortie-4nVY.ttf" id="1_4pokv"]
+[ext_resource type="Texture2D" uid="uid://ushjocampq3x" path="res://Assets/Sprites/button.png" id="2_v6nsl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6nsl"]
+texture = ExtResource("2_v6nsl")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sfovn"]
+texture = ExtResource("2_v6nsl")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4ka4"]
+texture = ExtResource("2_v6nsl")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(64, 0, 32, 32)
 
 [resource]
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_4pokv")
+Button/styles/focus = SubResource("StyleBoxTexture_v6nsl")
+Button/styles/hover = SubResource("StyleBoxTexture_v6nsl")
+Button/styles/normal = SubResource("StyleBoxTexture_sfovn")
+Button/styles/pressed = SubResource("StyleBoxTexture_e4ka4")
 Label/colors/font_outline_color = Color(0, 0.328317, 0.598062, 1)
 Label/colors/font_shadow_color = Color(0.29, 0.107155, 0.00869999, 0.054902)
 Label/constants/outline_size = 3

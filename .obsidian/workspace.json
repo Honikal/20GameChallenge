@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-15.md",
+                "file": "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-18.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-05-15"
+              "title": "2025-05-18"
             }
           },
           {
@@ -234,18 +234,22 @@
   },
   "active": "bd09345a3b16fc3f",
   "lastOpenFiles": [
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/Space Invaders.md",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212537768769.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scenes/MainScene.tscn212490084646.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212489404891.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212429691086.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212389848671.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scenes/MenuScene.tscn212389801110.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212349422326.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212343823376.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212333331853.tmp",
-    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd212329070433.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6296214567.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6215378042.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6199809302.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6193667969.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scenes/MenuScene.tscn6139457772.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6109097744.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6106148799.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_scene.gd6084585875.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scripts/menu_button.gd5973662177.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scenes/MenuScene.tscn5973570938.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Scenes/MenuScene.tscn5965364060.tmp",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Assets/Sprites/button.png",
+    "Untitled.md",
     "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-15.md",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-18.md",
+    "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/Space Invaders.md",
     "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-13.md",
     "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-05-12.md",
     "Game Level 3/space-invaders-(humans-invade-aliens)/Documentation/2025-04-28.md",
@@ -269,7 +273,6 @@
     "Game Level 2/jetpack-joyride/Resources/Sprites/Button.png",
     "Game Level 2/jetpack-joyride/Resources/Sprites/bat_obstacle.png",
     "Game Level 2/jetpack-joyride/Resources/Sprites/tile_0442.png",
-    "Game Level 2/jetpack-joyride/Resources/Sprites/tile_0441.png",
     "Game Level 2/jetpack-joyride/Documentation/2025-03-03.md"
   ]
 }

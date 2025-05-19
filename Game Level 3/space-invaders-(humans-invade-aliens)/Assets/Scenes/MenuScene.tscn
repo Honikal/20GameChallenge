@@ -46,11 +46,51 @@ alignment = 1
 [node name="PlayBtn" parent="MenuUI/ButtonsSection" instance=ExtResource("2_55vya")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../OptionsBtn")
-text = "Play"
-arrowMargin = 50
+text = "PLAY"
 
 [node name="OptionsBtn" parent="MenuUI/ButtonsSection" instance=ExtResource("2_55vya")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../PlayBtn")
+text = "OPTIONS"
+
+[node name="OptionsSection" type="VBoxContainer" parent="MenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -102.0
+offset_right = 201.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="OptionsLbl" type="Label" parent="MenuUI/OptionsSection"]
+layout_mode = 2
+theme = ExtResource("1_ybviq")
+theme_override_font_sizes/font_size = 40
 text = "Options"
-arrowMargin = 75
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ResolutionSection" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ButtonsSection/OptionsBtn")
+text = "RESOLUTION"
+
+[node name="FullscreenCheck" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ButtonsSection/OptionsBtn")
+text = "FULLSCREEN"
+
+[node name="VSyncCheck" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ButtonsSection/OptionsBtn")
+text = "VSYNC"
+
+[node name="BackBtn" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
+layout_mode = 2
+text = "BACK"

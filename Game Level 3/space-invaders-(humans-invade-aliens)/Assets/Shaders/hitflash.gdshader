@@ -16,15 +16,15 @@ void fragment() {
 	//Como dice la documentación, por cada pixel que sea visible se llamará esta función
 	//Lo bueno de acá es que, podemos aprovecharnos de ésto y controlar un color encima de nuestro
 	//sprite para dar un diseño esperado
-	
+
 	//Guardamos de forma local la luz y la textura de nuestra imagen
-	vec4 sprite_color = texture(TEXTURE, UV); 
+	vec4 sprite_color = texture(TEXTURE, UV);
 	//Luego, con respecto al booleano, crearemos un color (sin alpha) al cual usaremos para dar un efecto de parpadeo
 	vec3 final_rgb = hit_flash_on ? hit_flash_color.rgb : sprite_color.rgb;
 	//Luego, asignaremos esto al color deseado a poner, sin embargo... usaremos el alpha original
 	COLOR = vec4(final_rgb, sprite_color.a);
-	
-	
+
+
 }
 
 //void light() {
