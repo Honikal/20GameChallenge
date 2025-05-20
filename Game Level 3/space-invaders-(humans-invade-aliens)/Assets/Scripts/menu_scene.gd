@@ -10,10 +10,18 @@ extends Node
 	$MenuUI/OptionsSection/VSyncCheck,
 	$MenuUI/OptionsSection/BackBtn
 ]
-
 @onready var buttons_section: VBoxContainer = $MenuUI/ButtonsSection
 @onready var options_section: VBoxContainer = $MenuUI/OptionsSection
-@onready var res_option: OptionButton = $MenuUI/OptionsSection/ResolutionContainer/ResOption
+
+var resolutions = [
+	Vector2i(1920, 1080),
+	Vector2i(1600, 900),
+	Vector2i(1366, 768),
+	Vector2i(1280, 720),
+	Vector2i(1024, 576),
+	Vector2i(640, 360)
+];
+var currentIndex = resolutions[0];
 
 func _ready() -> void:
 	#La navegación entre vecinos está manejada por el editor, aunque se podría utilizar esta función
@@ -75,6 +83,18 @@ func _input(event: InputEvent) -> void:
 		if (focused_btn in buttons):
 			print("Se llama o toca el botón")
 			focused_btn.emit_signal("pressed");
+	
+	if (event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right")):
+		#Checamos que se presione espacio, tomamos el botón focuseado, y emitimos su señal
+		var focused_btn = get_viewport().gui_get_focus_owner();
+		
+		match focused_btn.name:
+			"ResolutionSection":
+				_changeResolution(event.is_action_pressed("ui_right"));
+			"FullscreenCheck":
+				pass
+			"VSyncCheck":
+				pass
 
 func _playGame():
 	SceneTransition._change_scene("game");
@@ -96,33 +116,22 @@ func _backBtn():
 	buttons[0].grab_focus();
 
 #Funciones de la sección de opciones
-func _populateResolutions():
-	#Ésta función se encarga de asignar una lista posible de resoluciones de acuerdo al sistema
-	#operativo
+
+func _changeResolution(is_right: bool):
+	var count = resolutions.size();
+	var newIndex = (currentIndex + (1 if is_right else -1)) % count;
+	currentIndex = newIndex;
 	
-	#Primero agarramos una lista de resoluciones
-	var resolutions = [
-		Vector2i(1920, 1080),
-		Vector2i(1600, 900),
-		Vector2i(1366, 768),
-		Vector2i(1280, 720),
-		Vector2i(1024, 576),
-		Vector2i(640, 360)
-	];
-	
-	#Limpiamos la lista de opciones y repopulamos
-	res_option.clear();
-	for res : Vector2i in resolutions:
-		res_option.add_item("%d x %d" % [res.x, res.y]);
+	#Vamos a modificar la resolución del juego
+	_onResolutionSelected(currentIndex);
+	var resolution = resolutions[currentIndex];
+	optButtons[currentIndex].text = "RESOLUTION : %d x %d" % [resolution.x, resolution.y];
+
 
 func _onResolutionSelected(index: int):
 	#Extraemos el texto de la resolución seleccionada
-	var selectedText = res_option.get_item_text(index);
-	#Con el texto obtenido, nos encargamos de extraer las resoluciones y separarlas del " x "
-	var parts = selectedText.split(" x ");
 	#Finalmente, con el array parts, conseguimos la variable de la resolución
-	var resolution = Vector2i(int(parts[0]), int(parts[1]));
-	
+	var resolution = Vector2i(resolutions[index], resolutions[index]);
 	#Luego de ésto, asignamos el tamaño a la pantalla
 	get_window().size = resolution;
 
@@ -130,14 +139,11 @@ func _onFullscreenToggled(toggle: bool):
 	if (toggle):
 		#Checamos que si está como verdadero, entonces asignamos el efecto de fullscreen
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN);
-		res_option.disabled = true;
 	else:
 		#Quitamos el fullscreen y reactivamos las resoluciones
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED);
 		#Reaplicamos la resolución de pasar de fullscreen
-		var selectedIndex = res_option.selected;
-		_onResolutionSelected(selectedIndex);
-		res_option.disabled = false;
+		#_onResolutionSelected(selectedIndex);
 	
 func _onVSyncToggled(toggle: bool):
 	#Activamos y desactivamos el toggle
