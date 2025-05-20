@@ -15,9 +15,15 @@ run/main_scene="uid://c211o42isqm35"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Tres/default_bus_layout.tres"
+
 [autoload]
 
 SceneTransition="*res://Assets/Scripts/scene_transition.gd"
+SoundsManager="*res://Assets/Scripts/sounds_manager.gd"
+MusicManager="*res://Assets/Scripts/music_manager.gd"
 
 [display]
 

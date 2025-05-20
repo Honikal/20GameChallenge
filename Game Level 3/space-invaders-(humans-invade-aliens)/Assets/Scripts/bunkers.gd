@@ -8,6 +8,7 @@ extends StaticBody2D
 var currentHealth: int;
 
 var explosion_scene = preload("res://Assets/Scenes/ParticleGenerated.tscn");
+const EXPLOSIONSOUND = preload("res://Assets/Sounds/explosion_sound.wav");
 
 #Señales
 signal shipDestroyed;
@@ -33,6 +34,10 @@ func _damageShip():
 		get_parent().add_child(exp_inst);
 		exp_inst.global_position = global_position;
 		exp_inst.emitting = true;
+		
+		SoundsManager._change_sound(EXPLOSIONSOUND);
+		SoundsManager._assignVolume(0.75);
+		SoundsManager._play_normal();
 		
 		#Destruimos el objeto
 		queue_free();

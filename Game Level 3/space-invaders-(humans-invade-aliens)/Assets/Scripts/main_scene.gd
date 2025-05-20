@@ -10,15 +10,18 @@ var player : Player = null;
 var playerInstance = preload("res://Assets/Scenes/Player.tscn");
 var enemyInstance = preload("res://Assets/Scenes/Enemy.tscn");
 var bunkerInstance = preload("res://Assets/Scenes/Bunkers.tscn");
-var SCREEN_SIZE = Vector2i(
-	ProjectSettings.get_setting("display/window/size/viewport_width"),
-	ProjectSettings.get_setting("display/window/size/viewport_height")
-);
-var Margin = Vector2i(16,  12);
-var Spacing = Vector2i(16, 24);
+
+const LEVELSOUND = preload("res://Assets/Sounds/level_up.wav");
+
+#Valores importantes en posición y tamaños
+var SCREEN_SIZE;
+var baseResolution = Vector2(640, 360);
+var scaleFactor;
+var MARGIN  = Vector2(16,  12);
+var SPACING = Vector2(16,  24);
 var bunker_y = 70;
-var bnkMargin = Vector2i(160, 80);
-var playerPos = 320; #Posición x y y del jugador
+var bnkMargin; #Margin X de las posiciones de bunkers
+var playerPos; #Posición x y y del jugador, basada en el ancho y la altura de la pantalla
 
 #Manejamos valores numerales
 const AMOUNT_OF_ROWS = 5;
@@ -50,8 +53,23 @@ var save_path = TEST_SAVE_PATH;
 
 var gameover : bool = false;
 
+func _scalingValues():
+	SCREEN_SIZE = get_window().size;
+	bnkMargin = Vector2i(SCREEN_SIZE.x / 4, SCREEN_SIZE.x / 8);
+	playerPos = Vector2i(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - (bunker_y * 1.5));
+	scaleFactor = get_viewport().get_visible_rect().size / baseResolution;
+	MARGIN  = MARGIN * scaleFactor;
+	SPACING = MARGIN * scaleFactor;
+
 func _ready() -> void:
 	randomize();
+	
+	#Función encargada de aplicar scaleo a las pantallas
+	_scalingValues();
+	
+	#Manejamos los datos de resolución como tal
+	var base_resolution = Vector2(640, 360);
+	var current_resolution = get_window().size;
 	
 	game_stats.score = 0;
 	game_stats.highestLevelAwarded = floor(game_stats.score / game_stats.pointsToLevel);
@@ -87,12 +105,13 @@ func _spawner():
 		for row in range(1, AMOUNT_OF_ROWS+1):
 			var newEnemy : Enemy = enemyInstance.instantiate();
 			newEnemy.global_position = Vector2(
-				(Margin.x * col) + (Spacing.x * (col-1)),
-				(Margin.y * row) + (Spacing.y * (row-1))
+				(MARGIN.x * col) + (SPACING.x * (col-1)),
+				(MARGIN.y * row) + (SPACING.y * (row-1))
 			);
 			#Manejamos con el valor de columna - 1
 			add_child(newEnemy);
 			newEnemy._setSpeedPerLevel(currentLevel);
+			newEnemy.scale = scaleFactor;
 			newEnemy.tree_exited.connect(_manageEnemyDead.bind(newEnemy, row));
 			newEnemy._manage_ship(row - 1);
 			enemiesCol.append(newEnemy);
@@ -106,6 +125,7 @@ func _spawner():
 			SCREEN_SIZE.y - bunker_y
 		);
 		add_child(newBunker);
+		newBunker.scale = scaleFactor;
 		newBunker.tree_exited.connect(_filterBunker.bind(newBunker));
 		bunkerGroup.append(newBunker);
 	
@@ -128,9 +148,9 @@ func _enemyGroupMovement():
 	
 	var groupDir = rightMore.direction_x       #Checar dirección actual
 	
-	if (groupDir > 0 and rightMore.position.x > (SCREEN_SIZE.x - Margin.x)):
+	if (groupDir > 0 and rightMore.position.x > (SCREEN_SIZE.x - MARGIN.x)):
 		_changeEnemyMovement();
-	elif (groupDir < 0 and leftMore.position.x < Margin.x):
+	elif (groupDir < 0 and leftMore.position.x < MARGIN.x):
 		_changeEnemyMovement();
 		
 func _checkExistenceEnemies(col: int):
@@ -215,7 +235,8 @@ func _updateEnemiesSpeed():
 func _generatePlayer():
 	#Creamos el objeto y lo agregamos a la escena
 	var newPlayer: Player = playerInstance.instantiate();
-	newPlayer.global_position = Vector2(playerPos, playerPos);
+	newPlayer.global_position = playerPos;
+	newPlayer.scale = scaleFactor;
 	add_child(newPlayer);
 	
 	#Guardamos la referencia del jugador acá
@@ -312,17 +333,6 @@ func _game_over():
 	#Cambiamos de escena
 	gameover = true;
 	SceneTransition._change_scene("menu");
-	
-
-
-"""
-func _anim_to_gameover_finished(anim_name: String):
-	if (anim_name == "txtAnimation"):
-		timer_to_transition.start();
-
-func _transition():
-	SceneTransition._change_scene("menu");
-"""
 
 func _new_level():
 	#Para evitar el error al gameover o al salir
@@ -350,6 +360,10 @@ func _new_level():
 		currentLives+= 1;
 		game_stats.highestLevelAwarded += 1;
 		_update_lifes_display();
+		
+	SoundsManager._change_sound(LEVELSOUND);
+	SoundsManager._assignVolume(1);
+	SoundsManager._play_normal();
 	
 	await get_tree().create_timer(1).timeout;
 	

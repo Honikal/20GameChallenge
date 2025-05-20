@@ -13,15 +13,21 @@ extends CharacterBody2D
 var bullet_scene = preload("res://Assets/Scenes/PlayerBullet.tscn");
 var explosion_scene = preload("res://Assets/Scenes/ParticleGenerated.tscn");
 
+#Agregamos los sonidos
+const SHOOTSOUND = preload("res://Assets/Sounds/player_shoot_sound.wav");
+const PLAYERDIES = preload("res://Assets/Sounds/lose_life_sound.wav");
+
 #Hacemos el disparo solo si se cumple
 var isShooting = false; 
 var margin_x = 20;
-var boundary_window_x = ProjectSettings.get_setting("display/window/size/viewport_width");
+var boundary_window_x;
 
 signal shipDestroyed;
 
 
 func _ready() -> void:
+	boundary_window_x = get_window().size.x;
+	
 	shoot_timer.timeout.connect(_reloadShot);
 	shipDestroyed.connect(_destroyShip)
 	
@@ -60,6 +66,10 @@ func _shootBullet():
 		bullet_inst.position = nuzzle.global_position;
 		bullet_inst.direction = Vector2(0, -1); #Dirección, va hacia arriba la bala
 		
+		#Aplicamos el sonido del disparo
+		SoundsManager._change_sound(SHOOTSOUND);
+		SoundsManager._play_normal();
+		
 		#Cambiamos el estado a que está disparando a verdadero (Iniciamos el disparo también)
 		isShooting = true;
 		shoot_timer.start();
@@ -83,6 +93,11 @@ func _destroyShip():
 	#Emitimos la explosión
 	exp_inst.global_position = global_position;
 	exp_inst.emitting = true;
+	
+	#Llamamos al manager de sonidos a que genere el sonido
+	SoundsManager._change_sound(PLAYERDIES);
+	SoundsManager._assignVolume(0.75);
+	SoundsManager._play_normal();
 	
 	#Destruimos el objeto
 	queue_free();

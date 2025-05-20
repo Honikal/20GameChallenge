@@ -7,6 +7,8 @@ extends CharacterBody2D;
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var nuzzle: Marker2D = $Nuzzle
 
+const SHOOTSOUND = preload("res://Assets/Sounds/player_shoot_sound.wav");
+
 var direction_x : int = 1;
 var bullet_scene = preload("res://Assets/Scenes/EnemyBullet.tscn");
 var explosion_scene = preload("res://Assets/Scenes/ParticleGenerated.tscn");
@@ -56,6 +58,11 @@ func _shoot_bullet():
 		#Decidimos la ubicación de la bala y la dirección
 		bullet_inst.position = nuzzle.global_position;
 		bullet_inst.direction = Vector2(0, 1);
+		
+		#Aplicamos el sonido del disparo
+		SoundsManager._change_sound(SHOOTSOUND);
+		SoundsManager._assignVolume(-20);
+		SoundsManager._play_normal();
 		
 	#Iniciamos el timer de disparo en base a un valor random
 	var time = randf_range(min_t, max_t);

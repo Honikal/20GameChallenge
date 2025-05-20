@@ -104,9 +104,9 @@ func _input(event: InputEvent) -> void:
 			"ResolutionSection":
 				_changeResolution(event.is_action_pressed("ui_right"));
 			"FullscreenCheck":
-				_changeFullscreen(event.is_action_pressed("ui_right"));
+				_changeFullscreen();
 			"VSyncCheck":
-				_changeVsync(event.is_action_pressed("ui_right"));
+				_changeVsync();
 
 func _playGame():
 	SceneTransition._change_scene("game");
@@ -140,41 +140,36 @@ func _changeResolution(is_right: bool):
 	var resolution = resolutions[currentIndex];
 	_options_display(resolution);
 	
-func _changeFullscreen(is_right: bool):
+func _changeFullscreen():
 	#Primero extraemos el valor para determinar si es true y determinamos el posible valor del fullscreen
-	var newValue = (true if is_right else false);
-	isFullscreen = newValue;
-	
-	print("Nuevo valor de isFullscreen: ", isFullscreen);
-	
+	isFullscreen = !isFullscreen;
 	#Actualizamos el posible texto
 	_options_display(null);
-func _changeVsync(is_right: bool):
+func _changeVsync():
 	#Primero extraemos el valor para determinar si es true y determinamos el posible valor del fullscreen
-	var newValue = (true if is_right else false);
-	isVsync = newValue;
-	
-	print("Nuevo valor de isVsync: ", isVsync);
-	
+	isVsync = !isVsync;
 	#Actualizamos el posible texto
 	_options_display(null);
 
 #Funciones para aplicar cambios en la pantalla
 func _save_configuration():
+	#Aplicamos la configuración
+	_applyConfiguration();
+	#Luego de esto aplicamos los cambios o guardamos en un archivo
+	_save_display_configuration();
+	
+func _applyConfiguration():
 	#Primero que todo, aplicamos los cambios visuales
 	get_window().size = resolutions[currentIndex];
-	print("Resolución actual: ", get_window().size);
 	var resolution = get_window().size;
+	print("Resolución actual: ", resolution);
+	
 	
 	#Centramos la pantalla si no está en fullscreen
 	if (DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN):
 		get_window().position = (DisplayServer.screen_get_size() - resolution) / 2;
-	
 	_onFullscreenToggled(isFullscreen);
 	_onVSyncToggled(isVsync);
-	
-	#Luego de esto aplicamos los cambios o guardamos en un archivo
-	_save_display_configuration();
 	
 func _onFullscreenToggled(toggle: bool):
 	if (toggle):
@@ -200,9 +195,9 @@ func _save_display_configuration():
 	var config = ConfigFile.new();
 	
 	#Guardamos la resolución actual
+	print("Resolución a la hora de guardar: ", get_window().size);
 	var size = get_window().size;
 	config.set_value("display", "resolution", "%dx%d" % [size.x, size.y]);
-	config.set_value("display", "resolution_index", currentIndex);
 	
 	#Guardamos si está en fullscreen
 	config.set_value("display", "fullscreen", 
@@ -231,8 +226,11 @@ func _load_display_configuration():
 		return;
 	
 	#Extraemos las resoluciones
-	var resIndex = config.get_value("display", "resolution_index", 0);
-	var resolution = resolutions[resIndex];
+	var resString = config.get_value("display", "resolution", "640x360");
+	var parts = resString.split("x");
+	var resolution = Vector2i(int(parts[0]), int(parts[1]));
+	#Modificamos la current index de la resolución
+	currentIndex = resolutions.find(resolution)
 	
 	#Cargamos fullscreen
 	var fullscreen = config.get_value("display", "fullscreen", false);
@@ -244,3 +242,4 @@ func _load_display_configuration():
 	
 	#Aplicamos el efecto del display
 	_options_display(resolution);
+	_applyConfiguration();
