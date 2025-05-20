@@ -13,6 +13,10 @@ extends Node
 @onready var buttons_section: VBoxContainer = $MenuUI/ButtonsSection
 @onready var options_section: VBoxContainer = $MenuUI/OptionsSection
 
+const CONFIG_PATH = "user://config.cfg";
+const TEST_CONFIG_PATH = "res://config.cfg";
+var save_path = TEST_CONFIG_PATH;
+
 var resolutions = [
 	Vector2i(1920, 1080),
 	Vector2i(1600, 900),
@@ -21,7 +25,9 @@ var resolutions = [
 	Vector2i(1024, 576),
 	Vector2i(640, 360)
 ];
-var currentIndex = resolutions[0];
+var currentIndex = 0;
+var isFullscreen = false;
+var isVsync = false;
 
 func _ready() -> void:
 	#La navegación entre vecinos está manejada por el editor, aunque se podría utilizar esta función
@@ -31,6 +37,8 @@ func _ready() -> void:
 	#Apagamos visualmente la sección de opciones y seteamos los valores iniciales
 	options_section.visible = false;
 	
+	#Cargamos las configuraciones
+	_load_display_configuration();
 	
 	#Agarramos el focus del botón, primero empezamos con el de play, y luego intentamos implementar
 	#el manejo de keyboard desde el mismo botón
@@ -61,9 +69,13 @@ func _setup_focus():
 func _setup_options():
 	#Seteamos las resoluciones con la posible lista
 	var resolution = DisplayServer.screen_get_size();
-	optButtons[0].text = "RESOLUTION : %d x %d" % [resolution.x, resolution.y]; 
-	optButtons[1].text = "FULLSCREEN : " + _boolToString(false);
-	optButtons[2].text = "VSYNC : " + _boolToString(false);
+	_options_display(resolution);
+
+func _options_display(resolution):
+	if (resolution != null):
+		optButtons[0].text = "RESOLUTION : %d x %d" % [resolution.x, resolution.y]; 
+	optButtons[1].text = "FULLSCREEN : " + _boolToString(isFullscreen);
+	optButtons[2].text = "VSYNC : " + _boolToString(isVsync);
 
 func _on_button_pressed(btn: TextureButton):
 	#Función encargada de recibir un botón y en base al botón seleccionado, llama una función
@@ -92,9 +104,9 @@ func _input(event: InputEvent) -> void:
 			"ResolutionSection":
 				_changeResolution(event.is_action_pressed("ui_right"));
 			"FullscreenCheck":
-				pass
+				_changeFullscreen(event.is_action_pressed("ui_right"));
 			"VSyncCheck":
-				pass
+				_changeVsync(event.is_action_pressed("ui_right"));
 
 func _playGame():
 	SceneTransition._change_scene("game");
@@ -106,8 +118,8 @@ func _optionsPressed():
 	optButtons[0].grab_focus();
 func _backBtn():
 	#Guardamos las modificaciones visuales
-	
-	
+	_save_configuration();
+	 
 	#Desactivamos las UI necesarias
 	buttons_section.visible = true;
 	options_section.visible = false;
@@ -115,26 +127,47 @@ func _backBtn():
 	#Agarramos focus del botón normal
 	buttons[0].grab_focus();
 
-#Funciones de la sección de opciones
-
+#Funciones de la sección de opciones 
 func _changeResolution(is_right: bool):
 	var count = resolutions.size();
+	
 	var newIndex = (currentIndex + (1 if is_right else -1)) % count;
 	currentIndex = newIndex;
 	
-	#Vamos a modificar la resolución del juego
-	_onResolutionSelected(currentIndex);
+	#Vamos a modificar la resolución del juego (modificamos esto en el guardado mejor)
+	#_onResolutionSelected(currentIndex);
+	
 	var resolution = resolutions[currentIndex];
-	optButtons[currentIndex].text = "RESOLUTION : %d x %d" % [resolution.x, resolution.y];
+	_options_display(resolution);
+func _changeFullscreen(is_right: bool):
+	#Primero extraemos el valor para determinar si es true y determinamos el posible valor del fullscreen
+	var newValue = (true if is_right else false);
+	isFullscreen = newValue;
+	
+	print("Nuevo valor de isFullscreen: ", isFullscreen);
+	
+	#Actualizamos el posible texto
+	_options_display(null);
+func _changeVsync(is_right: bool):
+	#Primero extraemos el valor para determinar si es true y determinamos el posible valor del fullscreen
+	var newValue = (true if is_right else false);
+	isVsync = newValue;
+	
+	print("Nuevo valor de isVsync: ", isVsync);
+	
+	#Actualizamos el posible texto
+	_options_display(null);
 
-
-func _onResolutionSelected(index: int):
-	#Extraemos el texto de la resolución seleccionada
-	#Finalmente, con el array parts, conseguimos la variable de la resolución
-	var resolution = Vector2i(resolutions[index], resolutions[index]);
-	#Luego de ésto, asignamos el tamaño a la pantalla
-	get_window().size = resolution;
-
+#Funciones para aplicar cambios en la pantalla
+func _save_configuration():
+	#Primero que todo, aplicamos los cambios visuales
+	get_window().size = resolutions[currentIndex];
+	_onFullscreenToggled(isFullscreen);
+	_onVSyncToggled(isVsync);
+	
+	#Luego de esto aplicamos los cambios o guardamos en un archivo
+	_save_display_configuration();
+	
 func _onFullscreenToggled(toggle: bool):
 	if (toggle):
 		#Checamos que si está como verdadero, entonces asignamos el efecto de fullscreen
@@ -144,7 +177,6 @@ func _onFullscreenToggled(toggle: bool):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED);
 		#Reaplicamos la resolución de pasar de fullscreen
 		#_onResolutionSelected(selectedIndex);
-	
 func _onVSyncToggled(toggle: bool):
 	#Activamos y desactivamos el toggle
 	DisplayServer.window_set_vsync_mode(
@@ -154,3 +186,53 @@ func _onVSyncToggled(toggle: bool):
 
 func _boolToString(bool):
 	return "ON" if bool else "OFF";
+
+func _save_display_configuration():
+	#Primero, manejamos el sistema o el archivo donde guardar
+	var config = ConfigFile.new();
+	
+	#Guardamos la resolución actual
+	var size = get_window().size;
+	config.set_value("display", "resolution", "%dx%d" % [size.x, size.y]);
+	config.set_value("display", "resolution_index", currentIndex);
+	
+	#Guardamos si está en fullscreen
+	config.set_value("display", "fullscreen", 
+		DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	);
+	
+	#VSync state
+	config.set_value("display", "vsync",
+		DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED
+	);
+	
+	config.save(save_path);
+	
+func _load_display_configuration():
+	#Función encargada de el cargar el puntaje mayor guardado en la última partida
+	var config = ConfigFile.new(); #Se crea un sistema para cargar archivos
+	var error = config.load(save_path);
+	
+	#Checamos o validamos si existe un error
+	if error != OK:
+		#Si encontramos un error, guardamos los default settings y retornamos
+		print("Error encontrado");
+		var default_resolution = Vector2i(640, 360);
+		get_window().size = default_resolution;
+		_save_display_configuration();
+		return;
+	
+	#Extraemos las resoluciones
+	var resIndex = config.get_value("display", "resolution_index", 0);
+	var resolution = resolutions[resIndex];
+	
+	#Cargamos fullscreen
+	var fullscreen = config.get_value("display", "fullscreen", false);
+	isFullscreen = fullscreen;
+	
+	#Cargamos vsync
+	var vsync = config.get_value("display", "vsync", false);
+	isVsync = vsync;	
+	
+	#Aplicamos el efecto del display
+	_options_display(resolution);
