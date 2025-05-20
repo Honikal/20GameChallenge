@@ -139,6 +139,7 @@ func _changeResolution(is_right: bool):
 	
 	var resolution = resolutions[currentIndex];
 	_options_display(resolution);
+	
 func _changeFullscreen(is_right: bool):
 	#Primero extraemos el valor para determinar si es true y determinamos el posible valor del fullscreen
 	var newValue = (true if is_right else false);
@@ -162,6 +163,13 @@ func _changeVsync(is_right: bool):
 func _save_configuration():
 	#Primero que todo, aplicamos los cambios visuales
 	get_window().size = resolutions[currentIndex];
+	print("Resolución actual: ", get_window().size);
+	var resolution = get_window().size;
+	
+	#Centramos la pantalla si no está en fullscreen
+	if (DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN):
+		get_window().position = (DisplayServer.screen_get_size() - resolution) / 2;
+	
 	_onFullscreenToggled(isFullscreen);
 	_onVSyncToggled(isVsync);
 	
