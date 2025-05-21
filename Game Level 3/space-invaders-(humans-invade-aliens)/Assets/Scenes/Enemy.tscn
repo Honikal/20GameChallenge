@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://c31t264r8k4ql" path="res://Assets/Tres/move_stats.tres" id="2_td1d5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyf8h"]
-size = Vector2(23, 25)
+size = Vector2(27, 28)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -17,7 +17,7 @@ texture = ExtResource("1_oyf8h")
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_oyf8h")
 
 [node name="Nuzzle" type="Marker2D" parent="."]

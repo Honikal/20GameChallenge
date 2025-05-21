@@ -76,11 +76,6 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ResolutionSection" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../ButtonsSection/OptionsBtn")
-text = "RESOLUTION"
-
 [node name="FullscreenCheck" parent="MenuUI/OptionsSection" instance=ExtResource("2_55vya")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../ButtonsSection/OptionsBtn")

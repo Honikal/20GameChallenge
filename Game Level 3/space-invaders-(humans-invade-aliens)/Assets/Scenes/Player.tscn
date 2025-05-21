@@ -44,7 +44,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3t24"]
-size = Vector2(32, 17)
+size = Vector2(32, 24)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 0
@@ -57,7 +57,6 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_w3t24")
 
 [node name="Nuzzle" type="Marker2D" parent="."]

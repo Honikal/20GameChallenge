@@ -21,7 +21,7 @@ var MARGIN  = Vector2(16,  12);
 var SPACING = Vector2(16,  24);
 var bunker_y = 70;
 var bnkMargin; #Margin X de las posiciones de bunkers
-var playerPos; #Posición x y y del jugador, basada en el ancho y la altura de la pantalla
+var playerPos = Vector2(320, 320); #Posición x y y del jugador, basada en el ancho y la altura de la pantalla
 
 #Manejamos valores numerales
 const AMOUNT_OF_ROWS = 5;
@@ -49,14 +49,13 @@ var currentLives : int;
 #Variables para manejar guardado
 const SAVE_PATH = "user://save.cfg";
 const TEST_SAVE_PATH = "res://save.cfg";
-var save_path = TEST_SAVE_PATH;
+var save_path = SAVE_PATH;
 
 var gameover : bool = false;
 
 func _scalingValues():
 	SCREEN_SIZE = get_window().size;
 	bnkMargin = Vector2i(SCREEN_SIZE.x / 4, SCREEN_SIZE.x / 8);
-	playerPos = Vector2i(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - (bunker_y * 1.5));
 	scaleFactor = get_viewport().get_visible_rect().size / baseResolution;
 	MARGIN  = MARGIN * scaleFactor;
 	SPACING = MARGIN * scaleFactor;
@@ -352,12 +351,11 @@ func _new_level():
 	_update_score_display();
 	
 	var bonusLives = game_stats.highestLevelAwarded - floor(game_stats.score / game_stats.pointsToLevel);
-	print("Valor de suma en vidas extra: MLevel (" + str(game_stats.highestLevelAwarded) + ") - floor( score ("
-	+ str(game_stats.score) + ") / pointsLevel (" + str(game_stats.pointsToLevel) +"))");
-	print("Valor de vidas extra: " + str(bonusLives));
 	if (bonusLives < 0):
 		print("Si subimos de vida");
-		currentLives+= 1;
+		#Solo aumentamos de vida si es menor a 3
+		if (currentLevel < 3):
+			currentLives+= 1;
 		game_stats.highestLevelAwarded += 1;
 		_update_lifes_display();
 		
