@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjog5yw4i7noe"]
+
+[ext_resource type="Script" uid="uid://ddcuwkt3tewc5" path="res://Assets/Scripts/game.gd" id="1_yub04"]
+[ext_resource type="PackedScene" uid="uid://bmyhcthea1ww" path="res://Assets/Scenes/frog.tscn" id="2_4aml7"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yub04")
+
+[node name="Frog" parent="." instance=ExtResource("2_4aml7")]
+position = Vector2(7, 232)
