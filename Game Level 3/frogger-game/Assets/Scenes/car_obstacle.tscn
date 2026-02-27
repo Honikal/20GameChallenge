@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://1slpepefpinr"]
+
+[ext_resource type="PackedScene" uid="uid://hikc4hqc1by2" path="res://Assets/Scenes/obstacle.tscn" id="1_42ur7"]
+[ext_resource type="Script" uid="uid://bv4dspqvsfijw" path="res://Assets/Scripts/car_obstacle.gd" id="2_0ihc5"]
+[ext_resource type="Texture2D" uid="uid://fsc05jcts2l1" path="res://Assets/Sprites/car_obstacle_sheet.png" id="2_wpfis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpfis"]
+size = Vector2(16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ihc5"]
+atlas = ExtResource("2_wpfis")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kec2"]
+atlas = ExtResource("2_wpfis")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay3h3"]
+atlas = ExtResource("2_wpfis")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euvw4"]
+atlas = ExtResource("2_wpfis")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcxxr"]
+atlas = ExtResource("2_wpfis")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kec2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ihc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kec2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay3h3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euvw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcxxr")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 5.0
+}]
+
+[node name="Car_Obstacle" instance=ExtResource("1_42ur7")]
+script = ExtResource("2_0ihc5")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_wpfis")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_6kec2")
+animation = &"Normal"

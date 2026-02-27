@@ -6,23 +6,9 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yub04")
-carInstance = ExtResource("3_wdram")
 
 [node name="Frog" parent="." instance=ExtResource("2_4aml7")]
 position = Vector2(7, 232)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+[node name="Car_Obstacle" parent="." instance=ExtResource("3_wdram")]
+position = Vector2(8, 211)

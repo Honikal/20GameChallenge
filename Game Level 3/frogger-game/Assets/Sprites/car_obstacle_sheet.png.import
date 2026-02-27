@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl3nxtrk7g3yv"
-path="res://.godot/imported/frog_title_scene.png-45aebccf4663c7702c78fa74182e4aed.ctex"
+uid="uid://fsc05jcts2l1"
+path="res://.godot/imported/car_obstacle_sheet.png-c96de50c7e6ba2dd42dabe006df32085.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/frog_title_scene.png"
-dest_files=["res://.godot/imported/frog_title_scene.png-45aebccf4663c7702c78fa74182e4aed.ctex"]
+source_file="res://Assets/Sprites/car_obstacle_sheet.png"
+dest_files=["res://.godot/imported/car_obstacle_sheet.png-c96de50c7e6ba2dd42dabe006df32085.ctex"]
 
 [params]
 

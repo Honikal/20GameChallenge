@@ -1,0 +1,2 @@
+class_name Car_Obstacle
+extends Obstacle
