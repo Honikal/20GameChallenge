@@ -1,14 +1,24 @@
+class_name Player
 extends CharacterBody2D
 
 @onready var move_timer: Timer = $MoveTimer
 
+const GRID_SIZE = 16;
+const MOVE_DURATION = 0.15;
+
 var canMove = true;
-var movement = 16
 var isMoving = false;
 var targetPosition = Vector2.ZERO;
 
+#Constantes del Grid de movimiento
+var grid_width = 14  # 224 / 16 = 14 tiles horizontally
+var grid_height = 13 # 208 / 16 = 13 tiles vertically (13 rows from bottom to top)
+
 func _ready() -> void:
-	move_timer.timeout.connect(_finish_move)
+	move_timer.timeout.connect(_finish_move);
+	
+	#Opcional: (Aplicamos un snapped al grid)
+	global_position = global_position.snapped(Vector2(GRID_SIZE, GRID_SIZE));
 
 func _finish_move():
 	canMove = true;
@@ -37,13 +47,19 @@ func _physics_process(_delta: float) -> void:
 		
 	#Manejamos el movimiento
 	if (moveDirection != Vector2.ZERO):
-		isMoving = true;
-		canMove = false;
+		var new_position = global_position + moveDirection * GRID_SIZE;
 		
-		#Creamos una animación de tween
-		var tween = create_tween();
+		#Validamos que el obstáculo no se pase del punto de aparición
 		
-		targetPosition = global_position + moveDirection * movement;
-		tween.tween_property(self, "position", targetPosition, 1);
-		print ("g_p: ", global_position, "\n t_p: ", targetPosition);
-		move_timer.start();
+		if GameStats._is_valid_grid_position(new_position, GRID_SIZE):
+			_start_move(new_position);
+		
+		
+
+func _start_move(new_position: Vector2):
+	isMoving = true;
+	canMove = false;
+	
+	var tween = create_tween();
+	tween.tween_property(self, "global_position", new_position, MOVE_DURATION);
+	move_timer.start(MOVE_DURATION);
