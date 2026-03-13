@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://hikc4hqc1by2"]
+[gd_scene load_steps=2 format=3 uid="uid://hikc4hqc1by2"]
 
 [ext_resource type="Script" uid="uid://c4s4cudjry5hq" path="res://Assets/Scripts/obstacle.gd" id="1_4ecn7"]
-[ext_resource type="Resource" uid="uid://dl67frvaf27gd" path="res://Assets/Tres/MoveStats.tres" id="2_ae2bi"]
 
 [node name="Obstacle" type="CharacterBody2D"]
 script = ExtResource("1_4ecn7")
-moveStats = ExtResource("2_ae2bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

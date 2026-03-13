@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var move_timer: Timer = $MoveTimer
 
 const GRID_SIZE = 16;
+const HALF_GRID = 8;
 const MOVE_DURATION = 0.15;
 
 var canMove = true;
@@ -14,11 +15,13 @@ var targetPosition = Vector2.ZERO;
 var grid_width = 14  # 224 / 16 = 14 tiles horizontally
 var grid_height = 13 # 208 / 16 = 13 tiles vertically (13 rows from bottom to top)
 
+signal player_dies;
+
 func _ready() -> void:
 	move_timer.timeout.connect(_finish_move);
 	
 	#Opcional: (Aplicamos un snapped al grid)
-	global_position = global_position.snapped(Vector2(GRID_SIZE, GRID_SIZE));
+	_snap_to_grid_center();
 
 func _finish_move():
 	canMove = true;
@@ -54,7 +57,12 @@ func _physics_process(_delta: float) -> void:
 		if GameStats._is_valid_grid_position(new_position, GRID_SIZE):
 			_start_move(new_position);
 		
-		
+func _snap_to_grid_center():
+	#Primero hacemos un snap a la cuadrícula
+	var snap = global_position.snapped(Vector2(GRID_SIZE, GRID_SIZE));
+	
+	#Luego agregamos el half grid para centrarlos en la celda
+	global_position = snap + Vector2(HALF_GRID, HALF_GRID);
 
 func _start_move(new_position: Vector2):
 	isMoving = true;
@@ -63,3 +71,8 @@ func _start_move(new_position: Vector2):
 	var tween = create_tween();
 	tween.tween_property(self, "global_position", new_position, MOVE_DURATION);
 	move_timer.start(MOVE_DURATION);
+
+func _die():
+	print("El jugador ha muerto, va a revivir en un cierto tiempo");
+	player_dies.emit();
+	

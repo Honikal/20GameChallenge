@@ -64,7 +64,7 @@ func _update_playeable_area():
 	var viewport = get_viewport();
 	
 	#Conseguimos el valor de escalado o básicamente, la constante o factor "a"
-	var content_scale = viewport.content_scale_factor;
+	var _content_scale = viewport.content_scale_factor;
 	
 	#Obtenemos el rectángulo visible en base a las coordenadas
 	var visible_rect = viewport.get_visible_rect();
@@ -88,8 +88,9 @@ func _calculate_row_positions():
 	
 	#Calculamos la posición Y para cada fila
 	for row in range(AMOUNT_OF_ROWS):
-		# Empezamos desde abajo y nos movemos hacia arriba
-		var y_pos = playableArea.end.y - ROW_HEIGHT - (row * ROW_HEIGHT)
+		# Empezamos desde abajo y nos movemos hacia arriba 
+		# Es * 2 ya que hay que tomar en cuenta que la primera fila es del jugador
+		var y_pos = playableArea.end.y - ROW_HEIGHT * 2 - (row * ROW_HEIGHT)
 		row_positions.append(y_pos)
 	print(row_positions);
 	
@@ -114,4 +115,35 @@ func _is_valid_grid_position(pos: Vector2, grid_size: int = 16) -> bool:
 	return (pos.x >= playableArea.position.x and 
 	pos.x <= playableArea.end.x - grid_size and
 	pos.y >= playableArea.position.y and 
-	pos.y <= playableArea.end.y - grid_size)
+	pos.y <= playableArea.end.y)
+	
+#LEVEL DATA MANAGEMENT
+var level_data = {
+	1: {
+		"current_speeds": [25, 35, 40, 45, 50],
+		"spawn_rate": [2.1, 2.3, 2.5, 1.9, 2.1],
+		"direction_moving": [1, 0, 1, 1, 0], #Movimiento (derecha 1, izquierda 0)
+		"timer": 60
+	},
+	2: {
+		"current_speeds": [30, 35, 40, 45, 50],
+		"spawn_rate": [1.3, 1.1, 0.9, 0.7,0.65],
+		"direction_moving": [1, 0, 0, 1, 1],
+		"timer": 55
+	},
+	3: {
+		"current_speeds": [45, 55, 60, 65, 70],
+		"spawn_rate": [1.3, 1.1, 0.7, 1.5, 1.1],
+		"direction_moving": [1, 0, 1, 0, 0],
+		"timer": 60
+	}
+}
+
+func _get_current_level_speeds() -> Array:
+	return level_data[current_level]["current_speeds"];	
+func _get_current_level_spawn_rate() -> Array:
+	return level_data[current_level]["spawn_rate"];
+func _get_current_level_timer() -> Array:
+	return level_data[current_level]["timer"];
+func _get_current_level_direction() -> Array:
+	return level_data[current_level]["direction_moving"];
